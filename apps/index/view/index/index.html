@@ -1,0 +1,476 @@
+<html>
+	<head>
+		<link type='text/css' href='../public/static/css/index.css' rel='stylesheet'  />
+		<link type='text/css' href='../public/static/css/mylunbo.css' rel='stylesheet'  />
+		<link rel="stylesheet" href="__static__/css/swiper.min.css">
+		<script type='text/javascript' src='__static__/js/jquery.min.js'></script>
+		<style>
+			.swiper-container-son {
+				 width: 380px;
+				 height: 85%;
+			 }
+			.swiper-container-father {
+				width: 100%;
+				height: 80%;
+			}
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				height:90%;
+				background: #fff;
+
+				/* Center slide text vertically */
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+
+		</style>
+	</head>
+	<body>
+	{include file='index/index_top'}
+		<div class='Contain'>
+			<div id='lunbo'>
+				<ul class='l_ul'>
+					<li class='l_li' style='display: block;'><img src='../public/static/img/homeban01.jpg' /></li>
+					<li class='l_li'><img src='../public/static/img/homeban02.jpg' /></li>
+					<li class='l_li'><img src='../public/static/img/homeban03.jpg' /></li>
+				</ul>
+				<div class='left_button'></div>
+				<div class='left_button'></div>
+				<div class="idxbox1">
+				  	<div class="wrap">
+				  		<ul class="ul">
+				  			<li>
+				  				<h3 class="h3" style="background:url(../public/static/img/icon05.png) no-repeat left center;"><a href="javascript:void(0);">我们的家</a></h3>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">开心整租</a>				  				
+				  				<a href="http://www.wmrent.com/dzxx/index_18.aspx" class="list">贴心短租</a>				  				
+				  			</li>
+				  			<li>
+				  				<h3 class="h3" style="background:url(../public/static/img/icon06.png) no-repeat left center;"><a href="javascript:void(0);">热点地铁站</a></h3>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">张江高科</a>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">陆家嘴</a>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">世纪大道</a>				  				
+				  			</li>
+				  			<li>
+				  				<h3 class="h3" style="background:url(../public/static/img/icon07.png) no-repeat left center;"><a href="javascript:void(0);">热点工作地</a></h3>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">陆家嘴</a>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">徐家汇</a>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">静安寺</a>				  				
+				  			</li>
+				  			<li>
+				  				<h3 class="h3" style="background:url(../public/static/img/icon08.png) no-repeat left center;"><a href="javascript:void(0);">我们服务</a></h3>			                    
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">维修</a>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">保洁</a>				  				
+				  				<a href="http://www.wmrent.com/kxaj/index_13.aspx" class="list">快递</a>				  				
+				  			</li>
+				  		</ul>
+				  	</div>
+				  </div>
+			</div>			
+			<div id='idxbox2'>
+				<div class="wrap">
+					<h1 class="h1">开心安家</h1>
+					<div class='read_more'>read more...</div>
+					<div class="swiper-container swiper-container-father">
+					<div class="idxList_wrap swiper-wrapper">
+						{foreach name='house' id='house'}
+		               <div class="idxList swiper-slide">
+					            <div class="BanList" style="width:100%;float:left;">
+									<div class="swiper-container swiper-container-son" alt="Image description">
+										<div class="my-gallery swiper-wrapper">
+											{foreach name='house.pic_list' id='pic_list' key='key'}
+											<div class="swiper-slide"><a href="__pic__/uploads/{$pic_list}"  data-size="1024x1024"><img src="__pic__/uploads/{$pic_list}" style='width:100%;height:100%' /></a></div>
+											{/foreach}
+										</div>
+										<!-- Add Pagination -->
+									</div>
+									<div class="desc" style="float:left;">
+									<span class="label orange"><!---->
+											{$house.address}
+									</span>
+											<a href="" class="title">{$house.underground}地铁站  </a>
+												<span class="rent" style="padding-left:50px;">￥{$house.price}/每月</span>
+										</div>
+					            </div>
+
+			            </div>
+						{/foreach}
+						<div class="clear"></div>
+					</div>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+				</div>
+			</div>
+			<div id='duanzu'>
+				<div class='wrap'>
+				<div class='h1'>贴心短租</div>
+					<div class='read_more'>read more...</div>
+					<div class="swiper-container swiper-container-father">
+						<div class="idxList_wrap swiper-wrapper">
+							{foreach name='hou' id='hou'}
+							<div class="idxList swiper-slide">
+								<div class="BanList" style="width:100%;float:left;">
+									<div class="swiper-container swiper-container-son" alt="Image description">
+										<div class="my-gallery swiper-wrapper">
+											{foreach name='hou.pic_list' id='pic_li' key='key'}
+											<div class="swiper-slide"><a href="__pic__/uploads/{$pic_li}"  data-size="1024x1024"><img src="__pic__/uploads/{$pic_li}" style='width:100%;height:100%' /></a></div>
+											{/foreach}
+										</div>
+										<!-- Add Pagination -->
+									</div>
+									<div class="desc" style="float:left;">
+									<span class="label orange"><!---->
+											{$house.address}
+									</span>
+										<a href="" class="title">{$house.underground}地铁站  </a>
+										<span class="rent" style="padding-left:50px;">￥{$house.price}/每月</span>
+									</div>
+								</div>
+
+							</div>
+							{/foreach}
+							<div class="clear"></div>
+						</div>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+				</div>
+
+			</div>		
+			<div class="idxbox4">
+				<div class="wrap">
+					<h1 class="h1">我们设计</h1>
+					<ul class="ul">
+		                
+		                        
+			                        <li>
+				                        <div class="list_box" style="background:url(/uploadfiles/womensheji/bg01.png) no-repeat 20px 23px;">
+					                        <h3 class="h3"><a href="http://www.wmrent.com/">别具匠心</a></h3>
+					                        <em></em>
+				                        </div>
+				                        <a href="http://www.wmrent.com/" class="img"><img src="http://www.wmrent.com/uploadfiles/womensheji/index01_16.jpg" alt=""></a>
+			                        </li>
+		                        
+		                
+		                        
+		                            <li>
+				                        <a href="http://www.wmrent.com/" class="img"><img src="http://www.wmrent.com/uploadfiles/womensheji/index01_19.jpg" alt=""></a>
+				                        <div class="list_box" style="background:url(/uploadfiles/womensheji/bg02.png) no-repeat 20px 23px;">
+					                        <h3 class="h3"><a href="http://www.wmrent.com/">精益求精</a></h3>
+					                        <em></em>
+				                        </div>	
+			                        </li>
+		                        
+		                
+		                        
+			                        <li>
+				                        <div class="list_box" style="background:url(/uploadfiles/womensheji/bg03.png) no-repeat 20px 23px;">
+					                        <h3 class="h3"><a href="http://www.wmrent.com/">金玉其质</a></h3>
+					                        <em></em>
+				                        </div>
+				                        <a href="http://www.wmrent.com/" class="img"><img src="http://www.wmrent.com/uploadfiles/womensheji/index01_21.jpg" alt=""></a>
+			                        </li>
+		                        
+		                
+					</ul>
+					<div class="clear"></div>
+				</div>
+	</div>		
+			<div class="idxbox5">
+				<div class="wrap">
+					<h1 class="h1">我们服务</h1>
+					<div class="idxbox5_wrap">
+						<div class="idxbox5_L">
+							<div class="BanList">
+							<div class="tempWrap" style="overflow:hidden; position:relative; width:795px"><ul class="ul" style="width: 4770px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -1590px;"><li class="clone" style="float: left; width: 795px;">
+		                                <a href="http://www.wmrent.com"><img src="http://www.wmrent.com/uploadfiles/image/index03_03.jpg" alt=""></a>
+										<div class="shadow">
+											<a href="http://www.wmrent.com">
+											  	<span class="title">我们搬家</span>
+											  	<span class="text">我们搬家小咖秀</span>
+											  	<em></em>
+											</a>
+										</div>
+							        </li>
+		                        
+							        <li style="float: left; width: 795px;">
+		                                <a href="http://www.wmrent.com"><img src="http://www.wmrent.com/uploadfiles/image/index03_03.jpg" alt=""></a>
+										<div class="shadow">
+											<a href="http://www.wmrent.com">
+											  	<span class="title">我们搬家</span>
+											  	<span class="text">我们搬家小咖秀</span>
+											  	<em></em>
+											</a>
+										</div>
+							        </li>
+		                        
+							        <li style="float: left; width: 795px;">
+		                                <a href="http://www.wmrent.com"><img src="http://www.wmrent.com/uploadfiles/image/index03_03.jpg" alt=""></a>
+										<div class="shadow">
+											<a href="http://www.wmrent.com">
+											  	<span class="title">我们搬家</span>
+											  	<span class="text">我们搬家小咖秀</span>
+											  	<em></em>
+											</a>
+										</div>
+							        </li>
+		                        
+							        <li style="float: left; width: 795px;">
+		                                <a href="http://www.wmrent.com"><img src="http://www.wmrent.com/uploadfiles/image/index03_03.jpg" alt=""></a>
+										<div class="shadow">
+											<a href="http://www.wmrent.com">
+											  	<span class="title">我们搬家</span>
+											  	<span class="text">我们搬家小咖秀</span>
+											  	<em></em>
+											</a>
+										</div>
+							        </li>
+		                        
+							        <li style="float: left; width: 795px;">
+		                                <a href="http://www.wmrent.com"><img src="http://www.wmrent.com/uploadfiles/image/index03_03.jpg" alt=""></a>
+										<div class="shadow">
+											<a href="http://www.wmrent.com">
+											  	<span class="title">我们搬家</span>
+											  	<span class="text">我们搬家小咖秀</span>
+											  	<em></em>
+											</a>
+										</div>
+							        </li>
+		                        
+							<li class="clone" style="float: left; width: 795px;">
+		                                <a href="http://www.wmrent.com"><img src="http://www.wmrent.com/uploadfiles/image/index03_03.jpg" alt=""></a>
+										<div class="shadow">
+											<a href="http://www.wmrent.com">
+											  	<span class="title">我们搬家</span>
+											  	<span class="text">我们搬家小咖秀</span>
+											  	<em></em>
+											</a>
+										</div>
+							        </li></ul></div>
+							</div>
+							<a href="javascript:void(0);" class="btn prev"></a>
+							<a href="javascript:void(0);" class="btn next"></a>
+						</div>
+
+						<div class="idxbox5_R">
+							<ul class="ul">
+								<li class="top">服务指南</li><!--服务指南-->
+		                        
+								<li class="list"><a href="/fwzn/info_75.aspx?itemid=94">如何快速搜索到目标房源</a></li>
+								
+								<li class="list"><a href="/fwzn/info_75.aspx?itemid=93">我们信用</a></li>
+								
+							</ul>
+							<ul class="ul">
+								<li class="top">投诉公示</li><!--投诉公示-->
+								
+								<li class="list"><a href="/tsgs/info_76.aspx?itemid=98">退租晚打款</a></li>
+								
+								<li class="list"><a href="/tsgs/info_76.aspx?itemid=97">邻里作息时间纠纷</a></li>
+								
+							</ul>
+							<ul class="ul">
+								<li class="top">联系我们</li><!--联系我们-->
+								
+								<li class="list"><a href="/lxwmPK/info_77.aspx?itemid=96">微信客服：9:00—22:00全程服务</a></li>
+								
+								<li class="list"><a href="/lxwmPK/info_77.aspx?itemid=95">我们400服务</a></li>
+								
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="idxbox5_wrap2">
+						<ul class="ul">
+		                    
+							<li style="background:url(../public/static/img/person01.png) no-repeat ;">
+								<a href="http://www.wmrent.com/index.aspx" class="title">我们维修</a>
+								<p class="p">全天候维修服务</p>
+								<a href="http://www.wmrent.com/index.aspx" class="more"></a>
+							</li>
+		                    
+							<li style="background:url(../public/static/img/person02.png) no-repeat ;">
+								<a href="http://www.wmrent.com/index.aspx" class="title">我们保洁</a>
+								<p class="p">日常、特需两大类保洁服务</p>
+								<a href="http://www.wmrent.com/index.aspx" class="more"></a>
+							</li>
+		                    
+							<li style="background:url(../public/static/img/person03.png) no-repeat ;">
+								<a href="http://www.wmrent.com/index.aspx" class="title">我们快递</a>
+								<p class="p">为您中转、为您解忧</p>
+								<a href="http://www.wmrent.com/index.aspx" class="more"></a>
+							</li>
+		                    
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="idxbox6">
+					<div class="wrap">
+						<h1 class="h1">我们动态</h1>
+						<ul class="ul">
+			                
+							<li>
+								<a href="http://www.wmrent.com" class="img">
+									<img src="http://www.wmrent.com/uploadfiles/2017/02/201702231556355635.jpg" alt="" class="round">
+									<div class="radius"></div>
+								</a>
+								<a href="javascript:void(0);" class="title">我们•News   </a>
+								<p class="p">我追求•我风采 </p>
+								<em></em>
+							</li>
+			                
+							<li>
+								<a href="http://www.wmrent.com" class="img">
+									<img src="http://www.wmrent.com/uploadfiles/2017/02/201702231556535653.jpg" alt="" class="round">
+									<div class="radius"></div>
+								</a>
+								<a href="javascript:void(0);" class="title">我们•简单  </a>
+								<p class="p">干净整洁•巧思简约 </p>
+								<em></em>
+							</li>
+			                
+							<li>
+								<a href="http://www.wmrent.com" class="img">
+									<img src="http://www.wmrent.com/uploadfiles/2017/02/201702231557515751.jpg" alt="" class="round">
+									<div class="radius"></div>
+								</a>
+								<a href="javascript:void(0);" class="title">我们•优雅  </a>
+								<p class="p">智慧选择•优雅余裕 </p>
+								<em></em>
+							</li>
+			                
+							<li>
+								<a href="http://www.wmrent.com" class="img">
+									<img src="http://www.wmrent.com/uploadfiles/2017/02/20170223155807587.jpg" alt="" class="round">
+									<div class="radius"></div>
+								</a>
+								<a href="javascript:void(0);" class="title">我们•幸福  </a>
+								<p class="p">为爱家有•幸福城堡 </p>
+								<em></em>
+							</li>
+			                
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+		</div>
+		<div class="Bottom">
+  <div class="wrap">
+      <div class="bottomL">
+        <div class="bottomT">
+          <ul class="ul">
+            <!--关于我们-->
+            <li><a href="/index.aspx">首页</a></li>
+            <!--关于我们-->
+            <li><a href="/gywmDN/index_12.aspx">关于我们</a></li>
+            <!--开心安家-->
+            <li><a href="/kxaj/index_13.aspx">开心安家</a></li>
+            <!--放心托管-->
+            <li><a href="/dep/index_41.aspx">放心托管</a></li>
+            <!--贴心短租-->
+            <li><a href="/duanzu/index_18.aspx">贴心短租</a></li>
+            <!--我们设计-->
+            <li><a href="/wmsj/index_19.aspx">我们设计</a></li>
+            <!--我们动态-->
+            <li><a href="/wmdt/index_20.aspx">我们动态</a></li>
+            <!--房产论坛-->
+            <li><a href="/gywmDN/index_12.aspx">房产地图</a></li>
+            <!--加盟我们-->
+            <!--<li><a href='/jmwm/index_21.aspx'>加盟我们</a></li>-->
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="bottomD">
+            <div class="bottomDL">
+              <div class="bottom_nav">
+                <!--联系我们-->
+                <a href="#">联系我们</a><em>|</em>
+                <!--法律声明-->
+                <a href="/flsm/index_37.aspx">法律声明</a><em>|</em>
+                <!--网站地图-->
+                <a href="/wzdt/index_38.aspx">网站地图</a><em>|</em>
+                <a href="/cnmember/memberCenter.aspx">会员功能</a>
+              </div>
+              <div class="copy">
+                 Copyright@2015runju .com版权所有<br>
+                经营许可证编号 <a href="http://www.miitbeian.gov.cn/">沪ICP备16018649号</a>
+              </div>
+            </div>
+            <div class="bdsharebuttonbox  bdshare-button-style0-16" id="bottomDR" data-bd-bind="1503119429867">
+                <a href="javascript:void(0);" class="weixin">
+                
+                  <span><img src="http://www.wmrent.com/uploadfiles/2016/03/201603141442234223.jpg" alt=""></span>
+                  
+                </a>
+                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+            </div>
+                  <script type="text/javascript">
+                      window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "36" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                  </script>
+        </div>
+        
+      </div>
+      <div class="bottomR">
+        
+        <div class="QRcode"><img src="http://www.wmrent.com/uploadfiles/2016/03/201603141442234223.jpg" alt="">
+        
+        <span>扫一扫关注我们</span>
+        </div>
+      </div>
+  </div>
+</div>
+	</body>
+</html>
+<script type='text/javascript' src='__static__/js/jquery.min.js'></script>
+<script type='text/javascript' src='__static__/js/mylunbo.js'></script>
+<script src="__static__/js/swiper.min.js"></script>
+<script>
+
+    var swiper = new Swiper('.swiper-container-son', {
+        spaceBetween: 30,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 2500,
+            stopOnLastSlide: false,
+            disableOnInteraction: false,
+        },
+//        autoplayStopOnlast:true,
+    });
+    var myswiper = new Swiper('.swiper-container-father', {
+        slidesPerView : 3,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 4000,
+            stopOnLastSlide: false,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        allowTouchMove: false,
+    });
+    $('.swiper-slide').mouseenter(function () {
+        myswiper.autoplay.stop();
+    })
+    $('.swiper-slide').mouseleave(function () {
+        myswiper.autoplay.start();
+    })
+</script>
