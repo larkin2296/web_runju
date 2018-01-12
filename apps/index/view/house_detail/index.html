@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="__static__/css/swiper.min.css">
 	<script type='text/javascript' src='__static__/js/jquery.min.js'></script>
 	<script src="//hm.baidu.com/hm.js?0fca4299deeb39c1b2aef913fe594f69"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cPMTIrV5Q6gkmpt0ZYsuGhCvHdn2vNFv"></script>
 	<style>
 		.swiper-container {
 			width: 100%;
@@ -104,7 +105,7 @@
 					<p><span>小区：</span>{$house.address}</p>
 					<p><span>地址：</span> {$house.unit}单元.{$house.doorplate}室</p>
 					<p><span>配置：</span>{foreach name='fur' id='fur'}
-						{$fur}
+						{$fur.furniture_name}
 						{/foreach}</p>
 				</div>
 				<div class="RePhone"> <a href="#"><span>{$house.landlord_tel}</span><em>值班人员</em><i>{$house.landlord}</i></a> </div>
@@ -114,12 +115,57 @@
 		<div class="HouResInfo">
 			<div class="ResInfTip">
 				<span><a href="javascript:void(0);" class="active">房源描述</a></span>
-				<span><a href="javascript:void(0);">房源图片</a></span>
 				<!--<span>房源图片</span>-->
 			</div>
 			<div class="ResInfo block">
-				<div style="font-size:16px; padding:40px 0;">
-				{$house.remark}
+				<div class="house_furniture">
+					<div class="house_fur_title">
+						<div class="res_pic"></div>
+						<div class="house_fur_top">
+							<div style="float:left;width:10%;height: 100%;font-size: 180%;line-height: 200%;">房屋配置</div>
+							<div style="float:left;width:70%;height:0.2em;background-color: black;margin-top: 2%;"></div>
+							<div style="float:left;width:20%;height: 100%;font-size: 180%;line-height: 200%;">Housing Allocation</div>
+						</div>
+					</div>
+					<div class="house_fur_content">
+						{foreach name='fur_list' id='fp'}
+						<li>
+							<img src="__static__/img/firniture/{$fp.furniture_pic}" />
+							<br/>
+							{$fp.furniture_name}
+						</li>
+						{/foreach}
+					</div>
+				</div>
+				<div class="house_remark">
+					<div class="house_fur_title">
+						<div class="res_pic"></div>
+						<div class="house_re_top">
+							<div class="house_fur_top">
+								<div style="float:left;width:15%;height: 100%;font-size: 180%;line-height: 200%;">关于此房源</div>
+								<div style="float:left;width:65%;height:0.2em;background-color: black;margin-top: 2%;"></div>
+								<div style="float:left;width:20%;height: 100%;font-size: 180%;line-height: 200%;">Housing About</div>
+							</div>
+						</div>
+					</div>
+					<div style="font-size:16px; padding:40px 0;">
+						{$house.remark}
+					</div>
+				</div>
+				<div class="house_transform">
+					<div class="house_fur_title">
+						<div class="res_pic"></div>
+						<div class="house_tr_top">
+							<div class="house_fur_top">
+								<div style="float:left;width:10%;height: 100%;font-size: 180%;line-height: 200%;">交通周边</div>
+								<div style="float:left;width:70%;height:0.2em;background-color: black;margin-top: 2%;"></div>
+								<div style="float:left;width:20%;height: 100%;font-size: 180%;line-height: 200%;">The Traffic Around</div>
+							</div>
+						</div>
+					</div>
+					<div id="house_tr_map" style="width:100%;height:85%;">
+
+					</div>
 				</div>
 			</div>
 
@@ -280,8 +326,51 @@
 //        normalizeSlideIndex:false,
     });
 
-//    galleryTop.controller.control = galleryThumbs;
-//    galleryThumbs.controller.control = galleryTop;
+
+    // 百度地图API功能
+    var map = new BMap.Map("house_tr_map");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(121.480524,31.23595), 13);
+    var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
+    var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+    var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL});
+    map.addControl(top_left_control);
+    map.addControl(top_left_navigation);
+    map.addControl(top_right_navigation);
+    var local = new BMap.LocalSearch(map, {
+        renderOptions:{map: map}
+    });
+    local.search("{$house.address}");
+//    $('#index_sub').click(function(){
+//        map.clearOverlays();
+//        $.ajax({
+//            type: "POST",
+//            url:"__back__/index.php/index/map/get_data",
+//            data:{'response':$('#index_text').val()},
+//            dataType: "json",
+//            success: function(data) {
+//                $.each(data,function(i,value){
+//                    var new_point = new BMap.Point(value.longitude,value.latitude);
+//                    var marker = new BMap.Marker(new_point);  // 创建标注
+//                    map.addOverlay(marker);              // 将标注添加到地图中
+//                    map.panTo(new_point);
+//                    var opts = {
+//                        width : 100,     // 信息窗口宽度
+//                        height: 100,     // 信息窗口高度
+////								  title : value.title, // 信息窗口标题
+//                        enableMessage:true,//设置允许信息窗发送短息
+//                        message:""
+//                    }
+//                    var infoWindow = new BMap.InfoWindow("<a href='../../index/detail/index/id/"+value.id+"' style='text-underline:none;color:orange;'><img src='__pic__/uploads/"+value.pic_1+"' style='width:100px;height:100px;float:left;'/></a><span>"+value.address+value.unit+"单元"+"</span>", opts);
+//                    marker.addEventListener("click", function(){
+//                        map.openInfoWindow(infoWindow,new_point); //开启信息窗口
+//                    });
+//                })
+//            }
+//        });
+//        setTimeout(function(){
+//            map.setZoom(17);
+//        }, 2000);
+//    })
 
 
 

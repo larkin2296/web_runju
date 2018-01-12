@@ -144,13 +144,14 @@ class BaseDataModel extends Model
 	}
 	public function get_furniture_name($furniture){
 		$id = explode(',',$furniture);
-		foreach($id as $val){
+		foreach($id as $key=>$val){
 			$data = DB::name('furniture_data')
-					->field('furniture_name')
+					->field('furniture_name,furniture_pic')
 					->where('t_id',$val)
 					->select();
-			$name[] = $data[0]['furniture_name'];			
-		}
+			$name[$key]['furniture_name'] = $data[0]['furniture_name'];
+            $name[$key]['furniture_pic'] = $data[0]['furniture_pic'];
+        }
 		return $name;
 	}
 	public function get_map($response){

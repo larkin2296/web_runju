@@ -21,24 +21,24 @@ em{font-style: normal;}
 
 .wrap{width: 1200px;margin:0 auto;}
 /*Top*/
-.Toper{height: 93px; background: #fff;border-top: 3px solid #0DB8EE;}
-.Toper .logo{width: 154px;height: 71px;float: left;margin: 12px 0px 0 0px;}
-.Toper .logo a{display: block;width: 154px;height: 71px;}
-.Toper .logo a img{width: 154px;height: 71px;}
-.Toper .HoPhone{width:190px; height:45px; line-height:23px; float:left; margin-top:25px; margin-left:20px;}
-.Toper .HoPhone div{width:45px; height:33px; float:left; border-right:1px solid #e5e5e5; margin-right:8px; padding-top:10px;}
-.Toper .HoPhone span{font-size:12px; color:#999;}
-.Toper .HoPhone h3{margin:0; font-size:21px; color:#ff9000;}
+/*.Toper{height: 93px; background: #fff;border-top: 3px solid #0DB8EE;}*/
+/*.Toper .logo{width: 154px;height: 71px;float: left;margin: 12px 0px 0 0px;}*/
+/*.Toper .logo a{display: block;width: 154px;height: 71px;}*/
+/*.Toper .logo a img{width: 154px;height: 71px;}*/
+/*.Toper .HoPhone{width:190px; height:45px; line-height:23px; float:left; margin-top:25px; margin-left:20px;}*/
+/*.Toper .HoPhone div{width:45px; height:33px; float:left; border-right:1px solid #e5e5e5; margin-right:8px; padding-top:10px;}*/
+/*.Toper .HoPhone span{font-size:12px; color:#999;}*/
+/*.Toper .HoPhone h3{margin:0; font-size:21px; color:#ff9000;}*/
 
-.TopR{float: right;margin-top: 11px;height: 35px;}
-.TopNav{float: right;margin-left: 20px;line-height: 35px;}
-.TopNav em{display:inline-block;width: 1px;height: 13px;background: url("../images/line01.png") no-repeat center center;
- padding:0 11px 0 16px;}
- .TopNav .btn{width: 97px;height: 34px;background: url("../images/btn01.png") no-repeat;font-size: 16px;
- font-weight: bold;color: #fff;display: inline-block;text-align: center;margin-left: 19px;}
-.Toper .Search{float: right;width: 236px;height: 35px;background: url("../images/search.png") no-repeat;}
-.Toper .Search input[type="text"]{width: 169px;height: 35px;line-height: 35px;padding: 0 14px;font-size: 13px;color: #999999;float: left;}
-.Toper .Search input[type="button"]{width: 35px;height: 35px;float: left;}
+/*.TopR{float: right;margin-top: 11px;height: 35px;}*/
+/*.TopNav{float: right;margin-left: 20px;line-height: 35px;}*/
+/*.TopNav em{display:inline-block;width: 1px;height: 13px;background: url("../images/line01.png") no-repeat center center;*/
+ /*padding:0 11px 0 16px;}*/
+ /*.TopNav .btn{width: 97px;height: 34px;background: url("../images/btn01.png") no-repeat;font-size: 16px;*/
+ /*font-weight: bold;color: #fff;display: inline-block;text-align: center;margin-left: 19px;}*/
+/*.Toper .Search{float: right;width: 236px;height: 35px;background: url("../images/search.png") no-repeat;}*/
+/*.Toper .Search input[type="text"]{width: 169px;height: 35px;line-height: 35px;padding: 0 14px;font-size: 13px;color: #999999;float: left;}*/
+/*.Toper .Search input[type="button"]{width: 35px;height: 35px;float: left;}*/
 
 .MainNav{float: right;margin-top: 10px;}
 .MainNav ul{}
@@ -604,6 +604,47 @@ border-bottom:solid 1px #E5E5E5; margin-bottom: 80px; }
 
 .ResInfo{display:none;}
 .block{display:block;}
+.house_furniture{
+	width:100%;
+	height:12em;
+	margin-top: 1%;
+	text-align: center;
+}
+.house_fur_title{
+	width:100%;
+	height:60px;
+	margin-bottom: 1.5%;
+}
+.res_pic{
+	float:left;
+	width:1.5%;
+	height:100%;
+	background-color: orange;
+
+}
+.house_fur_top{
+	float:left;
+	width:97%;
+	height:100%;
+	margin-left:1.5%;
+}
+.house_remark{
+	width:100%;
+	height:20em;
+}
+.house_transform{
+	width:100%;
+	height:40em;
+}
+.house_fur_content li{
+	width:50px;
+	height:100%;
+	float:left;
+	margin-left:50px;
+}
+.house_fur_content li img{
+	width:100%;
+}
 /*详细页*/
 
 

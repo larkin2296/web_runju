@@ -16,11 +16,11 @@ class HouseDetail extends Controller
         }
         $data = new BaseDataModel;
         $fur = $data->get_furniture_name($res[0]['furniture']);
-
         $key = $data->get_key_data($res[0]['key_word']);
         $this->assign('pic',$pic);
         $this->assign('s_pic',$pic);
         $this->assign('fur',$fur);
+        $this->assign('fur_list',$fur);
         $this->assign('k_word',$key);
         $this->assign('house',$res[0]);
         return $this->fetch();		
