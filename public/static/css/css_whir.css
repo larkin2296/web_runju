@@ -584,7 +584,7 @@ border-bottom:solid 1px #E5E5E5; margin-bottom: 80px; }
 .ReRemind{height:46px; width:484px; margin-top:20px; background:#fff7ef; line-height:46px; color:#999;}
 .ReRemind span{ color:#ff8200;}
 
-.SubPre{ position: relative; overflow: hidden; float:left; }
+.SubPre{ position: relative; overflow: hidden; float:left;height: 100%; }
 .SubPre .bigImg{ height: 400px; position: relative; margin-bottom:10px;}
 .SubPre .bigImg li img{ vertical-align:middle; width:600px; height:400px;   }
 .SubPre .bigImg li{width:600px; height:400px; list-style:none}

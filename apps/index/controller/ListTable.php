@@ -7,9 +7,9 @@ use app\index\model\BaseDataModel;
 
 class ListTable extends Controller
 { 
-	public function index(){
+	public function index($a){
 	    $res = DB::name('house_rent_data')
-            ->where(['house_type'=>array('=',1)])
+            ->where(array('rent_type'=>array('=',$a)))
             ->paginate(5)
             ->each(function($item,$key){
                 $data = new BaseDataModel;

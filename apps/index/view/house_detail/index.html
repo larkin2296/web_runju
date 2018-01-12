@@ -9,34 +9,53 @@
 	<title>公寓直租专业服务商</title>
 	<meta name="keywords" content="公寓直租 东昌新村 陆家嘴 短租 崂山新村 乳山二村 乳山三村 乳山四村 乳山五村 东园一村 东园二村 东园三村 东园四村 地铁站附近">
 	<meta name="Description" content="公寓直租">
-	<link type='text/css' href='../../public/static/css/index.css' rel='stylesheet'  />
-	<link rel="stylesheet" type="text/css" href="../../public/static/css/css_whir.css">
-	<script src="//hm.baidu.com/hm.js?0fca4299deeb39c1b2aef913fe594f69"></script><script type="text/javascript" defer="" async="" src="http://s0.qhimg.com/static/81b1085b146b01f5.js"></script><script type="text/javascript" src="/cn/scripts/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/cn/scripts/jquery.SuperSlide.2.1.1.js"></script>
-	<script type="text/javascript" src="//s.union.360.cn/113581.js"></script>
-	<!--[if lt IE 9]>
-	<script type="text/javascript" src="/cn/scripts/html5shiv.v3.72.min.js"></script>
+	<link type='text/css' href='__static__/css/index.css' rel='stylesheet'  />
+	<link rel="stylesheet" type="text/css" href="__static__/css/css_whir.css">
+	<link rel="stylesheet" href="__static__/css/swiper.min.css">
+	<script type='text/javascript' src='__static__/js/jquery.min.js'></script>
+	<script src="//hm.baidu.com/hm.js?0fca4299deeb39c1b2aef913fe594f69"></script>
+	<style>
+		.swiper-container {
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.swiper-slide {
+			background-size: cover;
+			background-position: center;
+		}
+		.gallery-thumbs {
+			height: 19%;
+			box-sizing: border-box;
+		}
+		.gallery-thumbs .swiper-slide {
+			width: 25%;
+			height: 100%;
+			opacity: 0.4;
+		}
+		.gallery-thumbs .swiper-slide-active {
+			opacity: 1;
+		}
+	</style>
 	<![endif]-->
 	<script type="text/javascript">
-        <!--
-        //平台、设备和操作系统
-        var system = {
-            win: false,
-            mac: false,
-            xll: false
-        };
-        //检测平台
-        var p = navigator.platform;
-        system.win = p.indexOf("Win") == 0;
-        system.mac = p.indexOf("Mac") == 0;
-        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-        //跳转语句
-        if (system.win || system.mac || system.xll) {//转向电脑
-            //window.location.href = "login.jsp";
-        } else {
-            window.location.href ='/index_wap.aspx'; //转向手机端
-        }
-        -->
+//        //平台、设备和操作系统
+//        var system = {
+//            win: false,
+//            mac: false,
+//            xll: false
+//        };
+//        //检测平台
+//        var p = navigator.platform;
+//        system.win = p.indexOf("Win") == 0;
+//        system.mac = p.indexOf("Mac") == 0;
+//        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+//        //跳转语句
+//        if (system.win || system.mac || system.xll) {//转向电脑
+//            //window.location.href = "login.jsp";
+//        } else {
+//            window.location.href ='/index_wap.aspx'; //转向手机端
+//        }
 	</script>
 
 	<script type="text/javascript">
@@ -47,151 +66,12 @@
 <!--top-->
 
 
-<div class="Toper">
-	<div class="wrap">
-		<div class="logo"><a href="/index.aspx"><img src="http://www.wmrent.com/cn/images/logo.png" alt=""></a></div>
-		<div class="HoPhone">
-
-			<div><img src="http://www.wmrent.com/cn/images/phone.png"></div>
-			<span>24小时客服热线</span>
-			<h3 class="h3">400-8213-449</h3>
-
-		</div>
-		<div class="TopR">
-			<div id="loginbefore" class="TopNav" style="display: block;">
-				<a href="tencent://message/?Menu=yes&amp;uin=476671688&amp;Site=在线客服&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" class="Top_btn">在线咨询</a><em></em>
-				<a href="/cnmember/login.aspx" class="Top_btn">会员登录</a>
-				<a href="/cnmember/register.aspx" class="btn">注册</a>
-			</div>
-
-			<div id="loginAfter" class="TopNav" style="display:none;">
-				<a href="tencent://message/?Menu=yes&amp;uin=476671688&amp;Site=在线客服&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" class="Top_btn">在线咨询</a><em></em>
-				<a href="/cnmember/memberCenter.aspx" class="Top_btn">欢迎您，<span id="userNameSpan"></span></a>
-				<a href="#" class="btn" onclick="tuiChu();return false;">退出</a>
-			</div>
-
-			<script type="text/javascript">
-                $(function () {
-                    //异步判断是否登录
-                    $.ajax({
-                        url: "/label/member/islogin.aspx",
-                        cache: false,
-                        success: function (data) {
-                            var result = eval("[" + data + "]")[0]; //值: [{'islogin':'1','username':'张三'}]
-                            if (result.islogin == "1") { // 已经登录
-                                $("#userNameSpan").text(result.username);
-                                $("#loginbefore").css("display", "none");
-                                $("#loginAfter").css("display", "block");
-                            } else {
-                                $("#loginbefore").css("display", "block");
-                                $("#loginAfter").css("display", "none");
-                            }
-                        }
-                    })
-                });
-                //会员异步退出
-                function tuiChu() {
-                    $.ajax({
-                        url: "/label/member/loginout.aspx?t=" + new Date().getMilliseconds(),
-                        success: function (data) {
-                            location.href = "/cnmember/memberCenter.aspx"; //刷新本页
-                        }
-                    });
-                }
-			</script>
-
-			<div class="Search">
-				<input type="text" value="Search" id="key" onblur="if(this.value=='')this.value='Search';" onfocus="if(this.value=='Search')this.value='';" onkeydown="entersearch()">
-				<input type="button" style="cursor:pointer;" onclick="return GoSearchUrl();">
-			</div>
-			<script type="text/javascript">
-                function GoSearchUrl() {
-                    var searchinput = document.getElementById("key");
-                    if (searchinput.value == "" || searchinput.value == "Search") {  // 提示文字
-                        alert("请输入关键字！");
-                        searchinput.focus();
-                        return false;
-                    }
-                    if (searchinput.value.length > 50) {
-                        alert("输入的关键字字数不要过多！");
-                        searchinput.focus();
-                        return false;
-                    }
-                    CheckString(searchinput.value);
-                }
-
-                function GoSreach(rs) {
-                    window.location = "/searchResultCn.aspx?key=" + escape(rs); //  搜索的页面
-                    return true;
-                }
-
-                function entersearch() {
-                    //alert(dd);
-                    var event = window.event || arguments.callee.caller.arguments[0];
-                    if (event.keyCode == 13) {
-                        GoSearchUrl();
-                    }
-                }
-
-                function CheckString(s) {
-                    var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\[\].<>/?~！@#￥……&*（）—|{}【】‘；：”“'。，、？]")
-                    var rs = "";
-                    for (var i = 0; i < s.length; i++) {
-                        rs = rs + s.substr(i, 1).replace(pattern, '');
-                    }
-                    if (rs == "") {
-                        alert("不能输入特殊字符！");
-                        return false;
-                    }
-                    else {
-                        GoSreach(rs);
-                    }
-                }
-			</script>
-			<div class="clear"></div>
-		</div>
-		<div class="MainNav" style="margin-top: 6px;">
-			<ul class="ul">
-				<!--关于我们-->
-				<li id="nav0"><a class="navA" href="/index.aspx">首页</a></li>
-				<!--房产论坛-->
-				<li id="nav7"><a class="navA" href="/PCMap.aspx" target="_blank">房产地图</a></li>
-				<!--开心安家-->
-				<li id="nav2" class="onnav"><a class="navA" href="/kxaj/index_13.aspx">开心安家</a></li>
-				<!--放心托管-->
-				<li id="nav3"><a class="navA" href="/dep/index_41.aspx">放心托管</a></li>
-				<!--贴心短租-->
-				<li id="nav4"><a class="navA" href="/duanzu/index_18.aspx">贴心短租</a></li>
-				<!--我们设计-->
-				<li id="nav5"><a class="navA" href="/wmsj/index_19.aspx">我们设计</a></li>
-				<!--我们动态-->
-				<li id="nav6"><a class="navA" href="/wmdt/index_20.aspx">我们动态</a></li>
-				<!--关于我们-->
-				<li id="nav1"><a class="navA" href="/gywmDN/index_12.aspx">关于我们</a></li>
-				<!--加盟我们-->
-				<!--<li id="nav8"><a class="navA" href='/jmwm/index_21.aspx'>加盟我们</a></li>-->
-			</ul>
-		</div>
-		<div class="clear"></div>
-	</div>
-</div>
-
-<script type="text/javascript">
-    //导航选中
-    $("#nav" + navID).addClass("onnav");
-
-    isChrome();
-    function isChrome(){
-        if(navigator.userAgent.indexOf("Chrome") > -1){
-            $(".MainNav").css("margin-top","6px");
-        }
-    };
-</script>
+{include file='index/index_top'}
 
 <!--top End-->
 <!--banner-->
 
-<div class="Banner" style="background:url(/uploadfiles/banner/banner03.jpg) no-repeat center center;"></div>
+<div class="Banner" style="background:url(__static__/img/banner03.jpg) no-repeat center center;"></div>
 
 <!--banner-->
 <div class="Contain">
@@ -199,59 +79,35 @@
 		<div class="HouResour">
 			<div class="HouResourImg">
 				<div class="SubPre">
-					<ul class="bigImg" style="position: relative; width: 600px; height: 400px;">
-
-						<li style="position: absolute; width: 600px; left: 0px; top: 0px;"><img style="width:600px;height:400px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156345634.jpg"></li>
-
-						<li style="position: absolute; width: 600px; left: 0px; top: 0px; display: none;"><img style="width:600px;height:400px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156335633.jpg"></li>
-
-						<li style="position: absolute; width: 600px; left: 0px; top: 0px; display: none;"><img style="width:600px;height:400px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156315631.jpg"></li>
-
-						<li style="position: absolute; width: 600px; left: 0px; top: 0px; display: none;"><img style="width:600px;height:400px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156305630.jpg"></li>
-
-						<li style="position: absolute; width: 600px; left: 0px; top: 0px; display: none;"><img style="width:600px;height:400px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156295629.jpg"></li>
-
-					</ul>
-					<div class="smallScroll">
-						<div class="smallImg">
-							<div class="tempWrap" style="overflow:hidden; position:relative; width:625px"><ul style="width: 625px; left: 0px; position: relative; overflow: hidden; padding: 0px; margin: 0px;">
-
-								<li class="on" style="float: left; width: 113px;"><a><img style="width:113px;height:77px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156345634.jpg"></a></li>
-
-								<li style="float: left; width: 113px;"><a><img style="width:113px;height:77px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156335633.jpg"></a></li>
-
-								<li style="float: left; width: 113px;"><a><img style="width:113px;height:77px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156315631.jpg"></a></li>
-
-								<li style="float: left; width: 113px;"><a><img style="width:113px;height:77px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156305630.jpg"></a></li>
-
-								<li style="float: left; width: 113px;"><a><img style="width:113px;height:77px;" src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156295629.jpg"></a></li>
-
-							</ul></div>
+					<div class="swiper-container gallery-top" alt="Image description">
+						<div class="bigImg swiper-wrapper" style="position: relative; width: 600px; height: 400px;">
+							{foreach name='pic' id='pic_list'}
+							<div class="swiper-slide"><a href="__pic__/uploads/{$pic_list}"  data-size="1024x1024"><img src="__pic__/uploads/{$pic_list}" style='width:100%;height:100%' /></a></div>
+							{/foreach}
+						</div>
+						<!-- Add Arrows -->
+						<div class="swiper-pagination"></div>
+					</div>
+					<div class="swiper-container gallery-thumbs">
+						<div class="swiper-wrapper">
+								{foreach name='s_pic' id='pic_list_1'}
+								<div class="swiper-slide" style="background:url('__pic__/uploads/{$pic_list_1}');height:100%;background-size: contain;"></div>
+								{/foreach}
 						</div>
 					</div>
-					<script type="text/javascript">
-                        //大图切换
-                        jQuery(".SubPre").slide({ titCell:".smallImg li", mainCell:".bigImg", effect:"fold", autoPlay:false,delayTime:200,
-                            startFun:function(i,p){
-                                //控制小图自动翻页
-                                if(i==0){ jQuery(".SubPre .sPrev").click() } else if( i%5==0 ){ jQuery(".SubPre .sNext").click()}
-                            }
-                        });
-                        //小图左滚动切换
-                        jQuery(".SubPre .smallScroll").slide({ mainCell:"ul",delayTime:100,vis:5,scroll:5,effect:"left",autoPage:true,prevCell:".sPrev",nextCell:".sNext",pnLoop:false });
-					</script>
 				</div>
 			</div>
 			<div class="HouResourCon">
 				<div class="ResourConer">
-					<p><span>租金：</span><i>￥8500.00</i></p>
-					<p><span>房屋：</span>小高层精装全配 看房方便 实房拍摄 近地铁</p>
-					<em>实房拍摄图 没有华丽的语言 大家自己感受</em>
-					<p><span>小区：</span>东园三村</p>
-					<p><span>地址：</span> 335.605</p>
-					<p><span>配置：</span>床 洗衣机 冰箱 微波炉 电视机 橱柜 空调等</p>
+					<p><span>租金：</span><i>￥{$house.price}</i></p>
+					<p><span>房屋：</span>{$house.title}</p>
+					<p><span>小区：</span>{$house.address}</p>
+					<p><span>地址：</span> {$house.unit}单元.{$house.doorplate}室</p>
+					<p><span>配置：</span>{foreach name='fur' id='fur'}
+						{$fur}
+						{/foreach}</p>
 				</div>
-				<div class="RePhone"> <a href="#"><span>4008213449</span><em>值班人员</em><i>先生</i></a> </div>
+				<div class="RePhone"> <a href="#"><span>{$house.landlord_tel}</span><em>值班人员</em><i>{$house.landlord}</i></a> </div>
 				<div class="ReRemind"><span>郑重提醒</span>：在签订合同之前，切勿支付任何形式的费用，以免上当受骗</div>
 			</div>
 		</div>
@@ -263,20 +119,10 @@
 			</div>
 			<div class="ResInfo block">
 				<div style="font-size:16px; padding:40px 0;">
-					地铁：地铁2号线东昌路站下4号出口步行5分钟即到,9号线三出口商城路步行三分钟即到。有多条公交线路直达：81, 85, 799, 774, 313, 981, 936, 630, 983, 993, 996, 971,隧道八线<br>近世纪大道、金茂大厦、环球大厦、东方明珠、东方医院。可俯瞰上海美丽夜景。室内通风好，大厅宽敞明亮，专人24小时管理，卫生，整洁，舒适?<br>房间配备齐全（冰箱，彩电，全自动洗衣机，热水器，微波炉，空调等）。周边生活设施齐全（大型超市，医院，银行，邮局，学校，网吧，快餐，小吃等）。<br><span style="font-size:18px;"><strong>我们为您提供24小时专业免费私人房屋顾问,客户免收中介服务费&nbsp;</strong></span><br><span style="font-size:18px;"><strong>免费房屋清理打扫</strong></span><br><span style="font-size:18px;"><strong>协助房屋维修服务</strong></span><br><span style="font-size:18px;"><strong>服务商圈：陆家嘴商圈 八佰伴商圈 环球金融中心附近 世纪大道站附近 浦西地铁沿线等需要租房的你们欢迎你们的来电</strong></span><br>
+				{$house.remark}
 				</div>
 			</div>
-			<div class="ResInfo">
-				<div class="TXDZImgBox">
 
-					<img src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156345634.jpg">
-
-					<img src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156335633.jpg">
-
-					<img src="http://www.wmrent.com/uploadfiles/image/%E6%B6%A6%E5%B1%85/%E4%B8%9C%E5%9B%AD%E4%B8%89%E6%9D%91335%E5%8F%B7605/201709271156315631.jpg">
-
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -391,13 +237,52 @@
 </script>
 
 <!--right End-->
-<script type="text/javascript">
-    //整站无图处理
-    jQuery.each(jQuery("img"), function (i, n) { jQuery(n).error(function () { n.src = '/uploadfiles/nopic.jpg'; }); n.src = n.src; });
-</script>
 <script>var _hmt = _hmt || [];(function() {  var hm = document.createElement("script");  hm.src = "//hm.baidu.com/hm.js?0fca4299deeb39c1b2aef913fe594f69";  var s = document.getElementsByTagName("script")[0];   s.parentNode.insertBefore(hm, s);})();</script>
 
 <!--bottom End-->
 
-<iframe name="266212" height="0" width="0" src="http://360fenxi.mediav.com/mv.html" style="display: none;"></iframe></body>
+</body>
 </html>
+<script src="__static__/js/swiper.min.js"></script>
+<script>
+
+    var galleryTop = new Swiper('.gallery-top', {
+//        navigation: {
+//            nextEl: '.swiper-button-next',
+//            prevEl: '.swiper-button-prev',
+//        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+        spaceBetween: 10,
+//        autoplay: {
+//            delay: 2500,
+//            stopOnLastSlide: false,
+//            disableOnInteraction: false,
+//        },
+//		loop:true,
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        controller: {
+            control: galleryTop, //控制Swiper1
+        },
+        slidesPerView: 'auto',
+        autoplay: {
+            delay: 2500,
+            stopOnLastSlide: false,
+            disableOnInteraction: false,
+        },
+        slideToClickedSlide: true,
+//        centeredSlides:true,
+//        normalizeSlideIndex:false,
+    });
+
+//    galleryTop.controller.control = galleryThumbs;
+//    galleryThumbs.controller.control = galleryTop;
+
+
+
+</script>

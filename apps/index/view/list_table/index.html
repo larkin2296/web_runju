@@ -5,8 +5,8 @@
 		<title>
 			
 		</title>
-      <link type='text/css' href='../../public/static/css/css_whir.css' rel='stylesheet'  />
-      <link type='text/css' href='../../public/static/css/index.css' rel='stylesheet'  />
+      <link type='text/css' href='__static__/css/css_whir.css' rel='stylesheet'  />
+      <link type='text/css' href='__static__/css/index.css' rel='stylesheet'  />
     </head>
 <body>
 <!--top-->
@@ -20,7 +20,7 @@
 
 <!--banner-->
 
-<div class="Banner" style="background:url(../../public/static/img/banner03.jpg) center center;"></div>
+<div class="Banner" style="background:url(__static__/img/banner03.jpg) center center;"></div>
 
 <!--banner-->
 
@@ -147,11 +147,11 @@
           {foreach name='list' id='list'}
           <li>
             <div class="left">
-              <a href="__back__/index/house_detail/id/{$list.id}" class="img">
+              <a href="__back__/index/house_detail/index/id/{$list.id}" class="img">
                 <img src="__pic__/uploads/{$list.pic_1}" alt="">
               </a>
               <div class="text">
-                <a href="__back__/index/house_detail/id/{$list.id}">{$list.title}</a>
+                <a href="__back__/index/house_detail/index/id/{$list.id}">{$list.title}</a>
                 <p class="p desc">{foreach name='list.furniture_list' id='f_list'}
                   {$f_list}{/foreach}</p>
                 <p class="p address">
@@ -165,7 +165,7 @@
             </div>
             <div class="right">
               <span>￥{$list.price} <em>(每月)</em></span>
-              <a href="__back__/index/house_detail/id/{$list.id}">查看更多</a>
+              <a href="__back__/index/house_detail/index/id/{$list.id}">查看更多</a>
             </div>
             <div class="clear"></div>
           </li>
