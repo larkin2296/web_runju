@@ -1,12 +1,12 @@
 <?php
 namespace app\index\controller;
 
-use think\Controller;
-use think\Db;
+    use think\Controller;
+    use think\Db;
 
 class index extends Controller
-{ 
-	public function index(){
+{
+    public function index(){
 	    $where = array('rent_type'=>array('=',1),'house_level'=>array('=',1));
         $res = DB::name('house_rent_data')
                 ->where($where)

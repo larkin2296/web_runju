@@ -55,7 +55,7 @@ em{font-style: normal;}
 .bottomL .bottomT{border-bottom: 1px solid #4B4B4B;padding-bottom: 15px;}
 /*.bottomL .bottomT li{float: left; margin-left: 69px;background: url("../images/icon04.png") no-repeat left center;
 	padding-left: 28px;}*/
-.bottomL .bottomT li{float: left; margin-left: 35px;background: url("../images/icon04.png") no-repeat left center;
+.bottomL .bottomT li{float: left; margin-left: 35px;background: url("../img/icon04.png") no-repeat left center;
 	padding-left: 28px;}
 .bottomL .bottomT li:first-child{margin-left: 0;}
 .bottomL .bottomT li a{color:#E3E3E3;}
@@ -474,7 +474,7 @@ border-bottom:solid 1px #E5E5E5; margin-bottom: 80px; }
 .tuoguan2 li{float: left;margin-bottom: 50px;}
 .tuoguan2 .list1{width: 191px;height: 191px;}
 .tuoguan2 .list1 img{width: 191px;height: 191px;}
-.tuoguan2 .list2{height: 191px;width: 145px;background: url("../images/arrow09.png") no-repeat center center;}
+.tuoguan2 .list2{height: 191px;width: 145px;background: url("../img/arrow09.png") no-repeat center center;}
 .tuoguan2 .btn{width: 205px;height: 51px;line-height: 51px;text-align: center;color: #fff;font-size: 24px;display: block;margin:50px auto;background: url("../images/btn08.png") no-repeat;}
 .btnTop{width: 205px;height: 51px;line-height: 51px;text-align: center;color: #fff;font-size: 24px;display: block;margin:0 auto;background: url("../images/btn08.png") no-repeat;padding: 0 0 50px 0;}	
 
