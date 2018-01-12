@@ -21,6 +21,7 @@ class ListTable extends Controller
         $page = $res->render();
         $this->assign('page', $page);
         $this->assign('list',$res);
+        $this->assign('type',$a);
         return $this->fetch();		
 	}
 }

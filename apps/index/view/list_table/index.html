@@ -7,6 +7,31 @@
 		</title>
       <link type='text/css' href='__static__/css/css_whir.css' rel='stylesheet'  />
       <link type='text/css' href='__static__/css/index.css' rel='stylesheet'  />
+      <style>
+        .pagination{
+          width:100%;
+          height:2em;
+          margin-bottom: 2em;
+        }
+        .pagination li{
+          width:30px;
+          height:30px;
+          text-align: center;
+          line-height:30px;
+          border:1px solid #E8E8E8;
+          float:left;
+          margin-left:10px;
+          cursor: pointer;
+        }
+        .pagination li:hover{
+          background-color: orange;
+          color:white;
+        }
+        .active{
+          background-color: orange;
+          color:white;
+        }
+      </style>
     </head>
 <body>
 <!--top-->
@@ -20,14 +45,14 @@
 
 <!--banner-->
 
-<div class="Banner" style="background:url(__static__/img/banner03.jpg) center center;"></div>
+<div class="Banner" {if condition='$type eq 1'}style="background:url(__static__/img/banner03.jpg) center center;"{else}style="background:url(__static__/img/banner05.jpg) center center;"{/if}></div>
 
 <!--banner-->
 
 <div class="Contain"> 
   <div class="wrap">
       <div class="Current">
-        <a href="/index.aspx">首页</a> &gt; <span>开心安家</span>
+        <a href="/index.aspx">首页</a> &gt; <span>{if condition='$type eq 1'}开心安家{else}贴心短租{/if}</span>
       </div>
     <script type="text/javascript"></script>
       <div class="condition">
