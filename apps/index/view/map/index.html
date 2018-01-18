@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>地图找房</title>
+    <script type='text/javascript' src='__static__/js/jquery.min.js'></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cPMTIrV5Q6gkmpt0ZYsuGhCvHdn2vNFv"></script>
+    <link rel="stylesheet" type="text/css" href="__static__/css/map.css">
+
+</head>
+<body>
+    <div class="top">
+        <div class="logo"></div>
+        <div class="search_bar"><input type="text" class="search_text" placeholder="输入小区名字"/><input type="button" class="search_button"/></div>
+        <div class="tel">上海租房 看房热线： 8:00~22:00<br/>
+            <span style="color: orange;font-size: 160%;">400-1737-365</span></div>
+    </div>
+    <div id="center">
+    </div>
+    <div class="left">
+    <div>
+
+    </div>
+        <div class="list_center">
+            <div class="list_cneter_top">
+                <div class="list_top_top"><img src="__static__/img/map.png" /><span>上海</span><span class="loc_now"></span><span class="num_house"></span></div>
+            </div>
+            <div class="list_center_list">
+                <!--<li>-->
+                    <!--<div class="list_left">-->
+                        <!--<img src="__pic__/uploads/_20171226150038.jpg" />-->
+                    <!--</div>-->
+                    <!--<div class="list_right">-->
+                        <!--<div class="list_right_title list_right_list">-->
+                            <!--【浦东】7号线长清路站 明珠花苑 5居室D室-->
+                        <!--</div>-->
+                        <!--<div class="list_right_address list_right_list">-->
+                            <!--朝南 10/18层 明珠花苑-->
+                        <!--</div>-->
+                        <!--<div class="list_right_price list_right_list">-->
+                            <!--特价：<span class="price_label">1991</span>元/月起<span class="price_type">押一付一</span>-->
+                        <!--</div>-->
+                        <!--<div class="list_right_keyword list_right_list">-->
+                            <!--<div class="list_keyword">次卧</div>-->
+                            <!--<div class="list_keyword">朝南</div>-->
+                            <!--<div class="list_keyword">阳台</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </div>
+        </div>
+        <div class="list_button"><div class="list_button_center"></div></div>
+    </div>
+</body>
+</html>
+<script>
+    $(function(){
+        $('.num_house').html('共'+'<span style="color:red;font-size:120%">'+{$house_num}+'</span>'+'套房源')
+    })
+$('.list_button').click(function(){
+    if($('.left').css('left') == '-400px'){
+        $('.left').animate({'left':'0px'});
+    }else{
+        $('.left').animate({'left':'-400px'});
+    }
+
+})
+var district = {$district};
+
+var mp = new BMap.Map("center");
+mp.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+mp.addControl(new BMap.OverviewMapControl({ isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT })); //右下角，打开
+mp.addControl(new BMap.ScaleControl()); // 添加默认比例尺控件
+mp.addControl(new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT })); // 左下
+mp.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
+mp.addControl(new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_SMALL })); //右上角，仅包含平移和缩放按钮
+
+window.map = mp;
+
+var point = new BMap.Point(121.472476, 31.238528);
+mp.centerAndZoom(point, 13);
+mp.enableScrollWheelZoom();
+
+// 复杂的自定义覆盖物
+function ComplexCustomOverlay(point, text, mouseoverText) {
+    this._point = point;
+    this._text = text;
+    this._overText = mouseoverText;
+}
+ComplexCustomOverlay.prototype = new BMap.Overlay();
+ComplexCustomOverlay.prototype.initialize = function (map) {
+    this._map = map;
+    var div = this._div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+    //  div.style.background = "url(ico01.png) no-repeat left top";
+    div.style.color = "white";
+    div.setAttribute('class', 'info');
+    div.style.height = "21px";
+    div.style.padding = "2px";
+    div.style.lineHeight = "18px";
+    div.style.whiteSpace = "nowrap";
+    div.style.MozUserSelect = "none";
+    div.style.fontSize = "12px";
+    div.style.cursor = "pointer";
+    var ul = this._ul = document.createElement("ul");
+    var li = this._li = document.createElement("li");
+    var a = this._a = document.createElement("a");
+    var em = this._em = document.createElement("em");
+
+    var span = this._span = document.createElement("span");
+    li.appendChild(a);
+    a.appendChild(span);
+    a.appendChild(em);
+    ul.appendChild(li);
+    div.appendChild(ul);
+    em.appendChild(document.createTextNode(this._overText+"套"));
+    span.appendChild(document.createTextNode(this._text));
+    var that = this;
+
+    var arrow = this._arrow = document.createElement("div");
+    // arrow.style.background = "url(ico01.png) no-repeat left top";
+    arrow.style.position = "absolute";
+    arrow.style.width = "30px";
+    arrow.style.height = "12px";
+    arrow.style.top = "19px";
+    arrow.style.left = "10px";
+    arrow.style.overflow = "hidden";
+    div.appendChild(arrow);
+    var leftBar = this._leftBar = document.createElement("div");
+    // leftBar.style.background = "url(ico01.png) no-repeat left top";
+    leftBar.style.position = "absolute";
+    leftBar.style.width = "11px";
+    leftBar.style.height = "24px";
+    leftBar.style.top = "0px";
+    leftBar.style.left = "-10px";
+    leftBar.style.overflow = "hidden";
+    div.appendChild(leftBar);
+
+    var rightBar = this._rightBar = document.createElement("div");
+    //   rightBar.style.background = "url(ico01.png) no-repeat left top";
+    rightBar.style.position = "absolute";
+    rightBar.style.width = "11px";
+    rightBar.style.height = "24px";
+    rightBar.style.top = "0px";
+    rightBar.style.right = "-10px";
+    rightBar.style.overflow = "hidden";
+    div.appendChild(rightBar);
+
+    li.onclick = function () {
+        var loc_name = $(this).children('a').children('span').html();
+        if(mp.getZoom() <= 13){
+            $.ajax({
+                type:"POST",
+                url:"{:url('map/get_street')}",
+                data:{'loc_name':loc_name},
+                dataType:"json",
+                success:function(data){
+                    $('.num_house').html('共'+'<span style="color:red;font-size:120%">'+JSON.parse(data).length+'</span>'+'套房源')
+                    $('.loc_now').html('>'+loc_name);
+                    map.clearOverlays();
+                    setTimeout(function(){
+                        mp.setCenter(loc_name);
+                        mp.setZoom(15);
+                    }, 200);
+                    $.each(JSON.parse(data),function(i,v){
+                        var local = new BMap.LocalSearch(mp, {
+                            onSearchComplete : function(SearchResult){
+                                if(SearchResult == ''){
+                                    return false;
+                                }
+                                var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(SearchResult.getPoi(0).point.lng, SearchResult.getPoi(0).point.lat), v.address, v.num); //这步是将覆盖物存到变量，以便下面使用。
+                                mp.addOverlay(myCompOverlay);
+                            }
+                        });
+                        local.search(v.address);
+                    })
+                }
+            })
+        }else{
+            $('.list_center_list').empty();
+            $('.left').animate({'left':'0px'});
+            $.ajax({
+                type:'POST',
+                url:"{:url('map/get_list')}",
+                data:{'loc_name':loc_name},
+                dataType:"json",
+                success:function(data){
+                        var html = '';
+                        $.each(data,function(i,v){
+                                html += '<li>\n' +
+                                    '<div class="list_left">\n' +
+                                    '<img src="__pic__/uploads/'+v.pic_1+'" />\n' +
+                                    ' </div>\n' +
+                                    '<div class="list_right">\n' +
+                                    '<div class="list_right_title list_right_list">\n' +
+                                    '【'+loc_name+'】 '+v.title+'\n' +
+                                    '</div>\n' +
+                                    '<div class="list_right_address list_right_list">\n' +
+                                    '朝'+v.orientation+v.house_floor+'层 '+v.address+'\n' +
+                                    '</div>\n' +
+                                    '<div class="list_right_price list_right_list">\n' +
+                                    '特价：<span class="price_label">'+v.price+'</span>元/月起<span class="price_type">'+v.pay_type+'</span>\n' +
+                                    '</div>\n' +
+                                    '<div class="list_right_keyword list_right_list">\n';
+                                    $.each(v.key_word_list,function(j,k){
+                                    html += '<div class="list_keyword">'+k+'</div>\n';
+                                    if(j == 2){
+                                        return false;
+                                    }
+                                    });
+                                    html +='</div>\n' +
+                                    '</div>\n' +
+                                    '</li>'
+                        })
+                    $('.list_center_list').append(html);
+                }
+            })
+        }
+
+
+        }
+    li.onmouseover = function (){
+//            console.log($(this).children('a').children('span').html());
+//            var bdary = new BMap.Boundary();
+//            var name = $(this).children('a').children('span').html();
+//            bdary.get(name, function(rs){       //获取行政区域
+//        //        map.clearOverlays();        //清除地图覆盖物
+//                var count = rs.boundaries.length; //行政区域的点有多少个
+//                for(var i = 0; i < count; i++){
+//                    var ply = new BMap.Polygon(rs.boundaries[i],
+//                        {strokeWeight: 2, //设置多边形边线线粗
+//                            strokeOpacity: 1, //设置多边形边线透明度0-1
+//                            StrokeStyle: "solid", //设置多边形边线样式为实线或虚线，取值 solid 或 dashed
+//                            strokeColor: "#ff0000", //设置多边形边线颜色
+//                            fillOpacity:0.2,
+//                        }); //建立多边形覆盖物
+//                   var dis =  map.addOverlay(ply);  //添加覆盖物
+////                    map.setViewport(ply.getPath());    //调整视野
+//                    console.log(dis);
+//                }
+//            });
+    }
+    li.onmouseout = function () {
+//        var allOverlay = map.getOverlays();
+//        for (var i = 0; i < allOverlay.length -1; i++){
+//            if(allOverlay[i].getLabel().content == "我是id=1"){
+//                map.removeOverlay(allOverlay[i]);
+//                return false;
+//            }
+//        }
+        }
+
+    mp.getPanes().labelPane.appendChild(div);
+    return div;
+}
+ComplexCustomOverlay.prototype.draw = function () {
+    var map = this._map;
+    var pixel = map.pointToOverlayPixel(this._point);
+    this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+    this._div.style.top = pixel.y - 30 + "px";
+}
+
+ComplexCustomOverlay.prototype.addEventListener = function (event, fun) {
+    this._div['on' + event] = fun;
+}
+
+
+$.each(district,function(i,v){
+    var local = new BMap.LocalSearch(mp, {
+//        renderOptions:{map: mp},
+        onSearchComplete : function(SearchResult){
+            v.pointx  = SearchResult.getPoi(0).point.lng ;
+            v.pointy  = SearchResult.getPoi(0).point.lat;
+            var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(SearchResult.getPoi(0).point.lng, SearchResult.getPoi(0).point.lat), v.title, v.num); //这步是将覆盖物存到变量，以便下面使用。
+            mp.addOverlay(myCompOverlay);
+        }
+    });
+    local.search(v.title);
+})
+
+mp.addEventListener("zoomend", function(){
+    if(this.getZoom() <= 13){
+        $('.left').animate({'left':'-400px'});
+        map.clearOverlays();
+        $.each(district,function(i,v){
+            var local = new BMap.LocalSearch(mp, {
+//        renderOptions:{map: mp},
+                onSearchComplete : function(SearchResult){
+                    v.pointx  = SearchResult.getPoi(0).point.lng ;
+                    v.pointy  = SearchResult.getPoi(0).point.lat;
+                    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(SearchResult.getPoi(0).point.lng, SearchResult.getPoi(0).point.lat), v.title, v.num); //这步是将覆盖物存到变量，以便下面使用。
+                    mp.addOverlay(myCompOverlay);
+                }
+            });
+            local.search(v.title);
+        })
+    }
+});
+
+$('.search_button').click(function(){
+    if($('.search_text').val() == ''){
+        alert('请输入');
+        return;
+    }
+    $.ajax({
+        type:"POST",
+        url:"{:url('map/get_address')}",
+        data:{'loc_name':$('.search_text').val()},
+        dataType:"json",
+        success:function(data){
+            $('.num_house').html('共'+'<span style="color:red;font-size:120%">'+JSON.parse(data).list.length+'</span>'+'套房源')
+            $('.loc_now').html('>'+$('.search_text').val());
+            map.clearOverlays();
+                var local = new BMap.LocalSearch(mp, {
+                    onSearchComplete : function(SearchResult){
+                        if(SearchResult == ''){
+                            return false;
+                        }
+                        var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(SearchResult.getPoi(0).point.lng, SearchResult.getPoi(0).point.lat), JSON.parse(data).overlay.address, JSON.parse(data).overlay.num); //这步是将覆盖物存到变量，以便下面使用。
+                        mp.addOverlay(myCompOverlay);
+                        var point = new BMap.Point(SearchResult.getPoi(0).point.lng, SearchResult.getPoi(0).point.lat);
+                        setTimeout(function(){
+                            mp.setCenter(point);
+                            mp.setZoom(15);
+                        }, 200);
+                    }
+                });
+                local.search($('.search_text').val());
+            $('.list_center_list').empty();
+            $('.left').animate({'left':'0px'});
+            var html = '';
+            $.each(JSON.parse(data).list,function(i,v){
+                html += '<li>\n' +
+                    '<div class="list_left">\n' +
+                    '<img src="__pic__/uploads/'+v.pic_1+'" />\n' +
+                    ' </div>\n' +
+                    '<div class="list_right">\n' +
+                    '<div class="list_right_title list_right_list">\n' +
+                    '【'+v.location_name+'】 '+v.title+'\n' +
+                    '</div>\n' +
+                    '<div class="list_right_address list_right_list">\n' +
+                    '朝'+v.orientation+v.house_floor+'层 '+v.address+'\n' +
+                    '</div>\n' +
+                    '<div class="list_right_price list_right_list">\n' +
+                    '特价：<span class="price_label">'+v.price+'</span>元/月起<span class="price_type">'+v.pay_type+'</span>\n' +
+                    '</div>\n' +
+                    '<div class="list_right_keyword list_right_list">\n';
+                $.each(v.key_word_list,function(j,k){
+                    html += '<div class="list_keyword">'+k+'</div>\n';
+                    if(j == 2){
+                        return false;
+                    }
+                });
+                html +='</div>\n' +
+                    '</div>\n' +
+                    '</li>'
+            })
+            $('.list_center_list').append(html);
+        }
+    })
+
+})
+//for (var i = 0; i < district.length; i++) {
+//    var txt = district[i].title;
+//    var num = district[i].num;
+//    var pintx = district[i].pointx;
+//    var pinty =district[i].pointy;
+//    console.log(pintx);
+//
+//
+//
+//
+////    (function () {
+////        var index = i;
+////        var p0 = json.point.split("|")[0];
+////        var p1 = json.point.split("|")[1];
+////        var point = new BMap.Point(p0, p1);
+////        var _iw = createInfoWindow(i);
+////        var _marker = myCompOverlay; //当初存的覆盖物变量，这里派上用场了。
+////        _marker.addEventListener("click", function (e) {
+////            mp.openInfoWindow(_iw, point);
+////        });
+////        if (!!json.isOpen) {
+////            this.openInfoWindow(_iw);
+////        }
+////    })()
+//}
+
+////创建marker
+//function addMarker() {
+//
+//    for (var i = 0; i < markerArr1.length; i++) {
+//
+//        var json = markerArr1[i];
+//        var p0 = json.point.split("|")[0];
+//        var p1 = json.point.split("|")[1];
+//        var point = new BMap.Point(p0, p1);
+//        var iconImg = createIcon(json.icon);
+//        var marker = new BMap.Marker(point, { icon: iconImg });
+//        var iw = createInfoWindow1(i);
+//        var label = new BMap.Label(json.title, { "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20) });
+//        marker.setLabel(label);
+//        mp.addOverlay(marker);
+//        label.setStyle({
+//            borderColor: "#808080",
+//            color: "#333",
+//            cursor: "pointer"
+//        });
+//
+//        (function () {
+//            var index = i;
+//            var _iw = createInfoWindow1(i);
+//            var _marker = marker;
+//            _marker.addEventListener("click", function () {
+//                this.openInfoWindow(_iw);
+//            });
+//            _iw.addEventListener("open", function () {
+//                _marker.getLabel().hide();
+//            })
+//            _iw.addEventListener("close", function () {
+//                _marker.getLabel().show();
+//            })
+//            label.addEventListener("click", function () {
+//                _marker.openInfoWindow(_iw);
+//            })
+//            if (!!json.isOpen) {
+//                label.hide();
+//                _marker.openInfoWindow(_iw);
+//            }
+//        })()
+//    }
+//}
+////创建InfoWindow
+//function createInfoWindow1(i) {
+//
+//    var json = markerArr1[i];
+//    var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
+//    return iw;
+//}
+////创建一个Icon
+//function createIcon(json) {
+//    var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), { imageOffset: new BMap.Size(-json.l, -json.t), infoWindowOffset: new BMap.Size(json.lb + 5, 1), offset: new BMap.Size(json.x, json.h) })
+//    return icon;
+//}
+//$(function () {
+//
+//    addMarker();
+//})
+
+
+</script>

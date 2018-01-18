@@ -1,0 +1,210 @@
+body,html{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+.top{
+    width:100%;
+    min-width: 1200px;
+    height:5em;
+}
+.logo{
+    width:10%;
+    background-color: yellow;
+    height:5em;
+    float:left;
+    background: url('../img/logo.png')no-repeat;
+    background-size: contain;
+}
+.search_bar{
+    width:324px;
+    height:3em;
+    float:left;
+    margin-left:5%;
+    margin-top:1%;
+    background: url('../img/search.png')no-repeat;
+    background-size: contain;
+}
+.search_text{
+    width: 267px;
+    height: 2em;
+    font-size: 130%;
+    vertical-align: middle;
+    border:none;
+    margin: 2px 2px;
+}
+.search_text::-webkit-input-placeholder{
+    font-size:80%;
+    letter-spacing: 8px;
+    padding-left:5%;
+}    /* 使用webkit内核的浏览器 */
+.search_text::-moz-placeholder{
+    font-size:80%;
+    letter-spacing: 8px;
+    padding-left:5%;
+}                  /* Firefox版本4-18 */
+.search_text::-moz-placeholder{
+    font-size:80%;
+    letter-spacing: 8px;
+    padding-left:5%;
+}                  /* Firefox版本19+ */
+.search_text::-ms-input-placeholder{
+    font-size:80%;
+    letter-spacing: 8px;
+    padding-left:5%;
+}           /* IE浏览器 */
+.search_button{
+    width: 50px;
+    height: 1.5em;
+    /*vertical-align: middle;*/
+    /*margin-top: 1.47em;*/
+    border:none;
+    background: none;
+    cursor: pointer;
+}
+.tel{
+    width:200px;
+    height:100%;
+    float:right;
+    font-size: 80%;
+    line-height:3em;
+}
+#center{
+    width:100%;
+    min-width: 1200px;
+    height:100%;
+}
+.info li {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    list-style: none;
+    background: url(../img/ico01.png) no-repeat left top;
+    background-size: contain;
+}
+.info li a {
+    color: #fff;
+    font-size: 13px;
+}
+.info li span {
+    display: block;
+    padding: 14px 0 0 0;
+}
+.info li em {
+    display: block;
+}
+.left{
+    position: absolute;
+    top:5em;
+    left:-400px;
+    width:400px;
+    height:90%;
+    background-color: white;
+
+}
+.list_cneter_top{
+    width:100%;
+    height:4em;
+
+}
+.num_house{
+    padding-left:100px;
+}
+.list_top_top{
+    width:90%;
+    height:100%;
+    font-size: 80%;
+    padding-left:10%;
+    line-height:4em;
+    border-bottom: 2px solid orange;
+}
+.list_top_top img{
+    vertical-align: middle;
+}
+.list_center_list{
+    width:100%;
+    height:47em;
+    overflow:scroll;
+}
+.list_button{
+    width: 21px;
+    height: 8em;
+    background-color: white;
+    position: absolute;
+    top: 370px;
+    left: 400px;
+    cursor: pointer;
+
+}
+.list_button_center{
+    width:21px;
+    height:3em;
+    margin-top: 3em;
+    background: url('../img/go_left.png')no-repeat;
+    background-size: 21px;
+}
+.list_center_list li{
+    width:100%;
+    height:11em;
+    list-style: none;
+    border-bottom: 1px solid darkorange;
+}
+.list_left{
+    float:left;
+    width:50%;
+    height:11em;
+}
+.list_left img{
+    width:90%;
+    height:90%;
+    margin:5% 5%;
+}
+.list_right{
+    float:left;
+    width:50%;
+    height:10em;
+    margin-top:1em;
+}
+.list_right_list{
+    float:left;
+    width:97%;
+    margin-left:5px;
+}
+.list_right_title{
+    height: 4em;
+    font-size: 80%;
+    font-weight: bold;
+}
+.list_right_address{
+    height:2em;
+    line-height:2em;
+    font-size:80%;
+}
+.list_right_price{
+    height:4em;
+    line-height:4em;
+    font-size:75%;
+}
+.list_right_price .price_type{
+    padding-left:8px;
+}
+.list_right_price .price_label{
+    font-size: 120%;
+    color: red;
+    font-family: 微软雅黑;
+    font-weight: bold;
+}
+.list_right_keyword{
+    height:3em;
+}
+.list_keyword{
+    float:left;
+    width:auto;
+    height:23px;
+    font-size: 60%;
+    border:1px solid orange;
+    line-height:25px;
+    text-align: center;
+    margin-left:5px;
+}

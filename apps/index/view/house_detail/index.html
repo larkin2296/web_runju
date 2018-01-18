@@ -273,9 +273,11 @@
     map.addControl(top_right_navigation);
     var local = new BMap.LocalSearch(map, {
         renderOptions:{map: map}
+
     });
+    local.enableFirstResultSelection();
     local.search("{$house.address}");
-//    $('#index_sub').click(function(){
+    //    $('#index_sub').click(function(){
 //        map.clearOverlays();
 //        $.ajax({
 //            type: "POST",
