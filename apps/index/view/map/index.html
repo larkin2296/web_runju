@@ -191,7 +191,7 @@ ComplexCustomOverlay.prototype.initialize = function (map) {
                 success:function(data){
                         var html = '';
                         $.each(data,function(i,v){
-                                html += '<li onclick="go_detail(v.id)">\n' +
+                                html += '<li onclick="go_detail('+v.id+')">\n' +
                                     '<div class="list_left">\n' +
                                     '<img src="__pic__/uploads/'+v.pic_1+'" />\n' +
                                     ' </div>\n' +
@@ -334,7 +334,7 @@ $('.search_button').click(function(){
             $('.left').animate({'left':'0px'});
             var html = '';
             $.each(JSON.parse(data).list,function(i,v){
-                html += '<li onclick="go_detail(v.id)">\n' +
+                html += '<li onclick="go_detail('+v.id+')">\n' +
                     '<div class="list_left">\n' +
                     '<img src="__pic__/uploads/'+v.pic_1+'" />\n' +
                     ' </div>\n' +
