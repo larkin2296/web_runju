@@ -65,6 +65,9 @@ $('.list_button').click(function(){
     }
 
 })
+    function go_detail(id){
+        location.href='__back__/index.php/index/house_detail/'+id;
+    }
 var district = {$district};
 
 var mp = new BMap.Map("center");
@@ -161,7 +164,7 @@ ComplexCustomOverlay.prototype.initialize = function (map) {
                     map.clearOverlays();
                     setTimeout(function(){
                         mp.setCenter(loc_name);
-                        mp.setZoom(15);
+                        mp.setZoom(16);
                     }, 200);
                     $.each(JSON.parse(data),function(i,v){
                         var local = new BMap.LocalSearch(mp, {
@@ -188,7 +191,7 @@ ComplexCustomOverlay.prototype.initialize = function (map) {
                 success:function(data){
                         var html = '';
                         $.each(data,function(i,v){
-                                html += '<li>\n' +
+                                html += '<li onclick="go_detail(v.id)">\n' +
                                     '<div class="list_left">\n' +
                                     '<img src="__pic__/uploads/'+v.pic_1+'" />\n' +
                                     ' </div>\n' +
@@ -322,7 +325,7 @@ $('.search_button').click(function(){
                         var point = new BMap.Point(SearchResult.getPoi(0).point.lng, SearchResult.getPoi(0).point.lat);
                         setTimeout(function(){
                             mp.setCenter(point);
-                            mp.setZoom(15);
+                            mp.setZoom(16);
                         }, 200);
                     }
                 });
@@ -331,7 +334,7 @@ $('.search_button').click(function(){
             $('.left').animate({'left':'0px'});
             var html = '';
             $.each(JSON.parse(data).list,function(i,v){
-                html += '<li>\n' +
+                html += '<li onclick="go_detail(v.id)">\n' +
                     '<div class="list_left">\n' +
                     '<img src="__pic__/uploads/'+v.pic_1+'" />\n' +
                     ' </div>\n' +
