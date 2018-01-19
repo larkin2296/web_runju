@@ -85,11 +85,12 @@
 					<div class="idxList_wrap swiper-wrapper">
 						{foreach name='house' id='house'}
 		               <div class="idxList swiper-slide">
+						   <input type="hidden" class="house_id" value="{$house.id}" />
 					            <div class="BanList" style="width:100%;float:left;">
 									<div class="swiper-container swiper-container-son" alt="Image description">
 										<div class="my-gallery swiper-wrapper">
 											{foreach name='house.pic_list' id='pic_list' key='key'}
-											<div class="swiper-slide"><a href="__pic__/uploads/{$pic_list}"  data-size="1024x1024"><img src="__pic__/uploads/{$pic_list}" style='width:100%;height:100%' /></a></div>
+											<div class="swiper-slide"><img src="__pic__/uploads/{$pic_list}" style='width:100%;height:100%' /></div>
 											{/foreach}
 										</div>
 										<!-- Add Pagination -->
@@ -120,11 +121,12 @@
 						<div class="idxList_wrap swiper-wrapper">
 							{foreach name='hou' id='hou'}
 							<div class="idxList swiper-slide">
+								<input type="hidden" class="house_id" value="{$house.id}" />
 								<div class="BanList" style="width:100%;float:left;">
 									<div class="swiper-container swiper-container-son" alt="Image description">
 										<div class="my-gallery swiper-wrapper">
 											{foreach name='hou.pic_list' id='pic_li' key='key'}
-											<div class="swiper-slide"><a href="__pic__/uploads/{$pic_li}"  data-size="1024x1024"><img src="__pic__/uploads/{$pic_li}" style='width:100%;height:100%' /></a></div>
+											<div class="swiper-slide"><img src="__pic__/uploads/{$pic_li}" style='width:100%;height:100%' /></div>
 											{/foreach}
 										</div>
 										<!-- Add Pagination -->
@@ -408,4 +410,7 @@
     $('.swiper-container-father').mouseleave(function () {
         myswiper.autoplay.start();
     })
+	$('.idxList').click(function(){
+	    location.href='__back__/index/house_detail/index/id/'+$(this).children('.house_id').val();
+	})
 </script>
