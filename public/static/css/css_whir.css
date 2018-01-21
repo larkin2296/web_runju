@@ -475,8 +475,8 @@ border-bottom:solid 1px #E5E5E5; margin-bottom: 80px; }
 .tuoguan2 .list1{width: 191px;height: 191px;}
 .tuoguan2 .list1 img{width: 191px;height: 191px;}
 .tuoguan2 .list2{height: 191px;width: 145px;background: url("../img/arrow09.png") no-repeat center center;}
-.tuoguan2 .btn{width: 205px;height: 51px;line-height: 51px;text-align: center;color: #fff;font-size: 24px;display: block;margin:50px auto;background: url("../images/btn08.png") no-repeat;}
-.btnTop{width: 205px;height: 51px;line-height: 51px;text-align: center;color: #fff;font-size: 24px;display: block;margin:0 auto;background: url("../images/btn08.png") no-repeat;padding: 0 0 50px 0;}	
+.tuoguan2 .btn{width: 205px;height: 51px;line-height: 51px;text-align: center;color: #fff;font-size: 24px;display: block;margin:50px auto;background: url("../img/btn08.png") no-repeat;}
+.btnTop{width: 205px;height: 51px;line-height: 51px;text-align: center;color: #fff;font-size: 24px;display: block;margin:0 auto;background: url("../img/btn08.png") no-repeat;padding: 0 0 50px 0;}
 
 .screenshadow{width: 100%;height: 100%;background: url("../images/shadow03.png") repeat;display: none; position: fixed;top: 0; left: 0;}
 .tuoguan_form{width: 1200px;height: 702px;position: fixed;left: 50%;margin-left: -600px;top: 30px;top:10px\9;display: none;}

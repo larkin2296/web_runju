@@ -7,6 +7,7 @@
     <link type='text/css' href='__static__/css/index.css' rel='stylesheet'  />
 </head>
 <body>
+<div id="a"></div>
 {include file='index/index_top'}
 <div class="Banner" style="background:url(__static__/img/banner04.jpg) no-repeat center center;"></div>
 <div class="Contain">
@@ -83,12 +84,132 @@
 
             </ul>
             <div class="clear"></div>
-            <a href="javascript:void(0)" class="btn">一键托管房屋</a>
+            <div class="btn">一键托管房屋</div>
         </div>
         <!--第二屏：end-->
     </div>
 
 </div>
+<div id='main_detail'>
+    <div class="detail_close"></div>
+    <div class='detail_select_sell'>出售</div>
+    <div style='height:10%;float: left;color: gray;border-bottom: 1px solid gray;line-height: 200%;margin-top:4%;'>|</div>
+    <div class='detail_select_rent'>出租</div>
+    <div class='detail_form_sell active'>
+        <form id='sell_form'>
+            <div class='detail_form_list'>
+                <span>姓名</span><input type='text' class='detail_form_input' name='sell_name' placeholder="请输入姓名"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>联系方式</span><input type='text' class='detail_form_input' name='sell_tel' placeholder="请输入手机号"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>小区名</span><input type='text' class='detail_form_input' name='sell_village' placeholder="输入小区名"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>住宅地址</span><input type='text' class='detail_form_input' name='sell_addr' placeholder="输入街道门牌"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>售价</span><input type='text' class='detail_form_input' name='sell_price' placeholder="输入价格"/>
+            </div>
+            <input type='button' class='detail_form_submit' id='sell_sub' value='提交'>
+        </form>
+    </div>
+    <div class='detail_form_rent'>
+        <form id='rent_form'>
+            <div class='detail_form_list'>
+                <span>姓名</span><input type='text' class='detail_form_input' name='rent_name' placeholder="请输入姓名"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>联系方式</span><input type='text' class='detail_form_input' name='rent_tel' placeholder="请输入手机号"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>小区名</span><input type='text' class='detail_form_input' name='rent_village' placeholder="输入小区名"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>住宅地址</span><input type='text' class='detail_form_input' name='rent_addr' placeholder="输入街道门牌"/>
+            </div>
+            <div class='detail_form_list'>
+                <span>租金</span><input type='text' class='detail_form_input' name='rent_price' placeholder="输入价格"/>
+            </div>
+            <input type='button' class='detail_form_submit' id='rent_sub' value='提交'>
+        </form>
+    </div>
+</div>
 {include file='index/index_bottom'}
 </body>
 </html>
+<script src='__static__/js/jquery.min.js'></script>
+<script type='text/javascript'>
+    $('.btn').click(function(){
+        $('#a').css('display','block');
+        $('#main_detail').css('display','block');
+    })
+    $('.detail_close').click(function(){
+        $('#a').css('display','none');
+        $('#main_detail').css('display','none');
+    })
+    $('.detail_select_sell').click(function(){
+        $('.detail_select_rent').css('color','black');
+        $('.detail_select_sell').css('color','orange');
+        $('.detail_form_rent').removeClass('active');
+        $('.detail_form_sell').addClass('active');
+    })
+    $('.detail_select_rent').click(function(){
+        $('.detail_select_sell').css('color','black');
+        $('.detail_select_rent').css('color','orange');
+        $('.detail_form_sell').removeClass('active');
+        $('.detail_form_rent').addClass('active');
+    })
+    $('#sell_sub').click(function(){
+        var $kong = $("#sell_form input[type='text']");
+        flag = false;
+        $kong.each(function(i){
+            if($(this).val() == ""){
+                flag = true;
+                return false;
+            }
+        });
+        if(flag == true){
+            alert('请填写完整');
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url:"{:url('tuo_guan/save_data')}",
+            data:{'data':$("#sell_form").serializeArray(),'type':0},// 序列化表单值
+            dataType: "json",
+            success: function(data) {
+                alert('提交成功');
+                $('#a').css('display','none');
+                $('#main_detail').css('display','none');
+            }
+        });
+    })
+    $('#rent_sub').click(function(){
+        var $kong = $("#rent_form input[type='text']");
+        flag = false;
+        $kong.each(function(i){
+            if($(this).val() == ""){
+                flag = true;
+                return false;
+            }
+        });
+
+        if(flag){
+            alert('请填写完整');
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url:"{:url('tuo_guan/save_data')}",
+            data:{'data':$("#rent_form").serializeArray(),'type':1},// 序列化表单值
+            dataType: "json",
+            success: function(data) {
+                alert('提交成功');
+                $('#a').css('display','none');
+                $('#main_detail').css('display','none');
+            }
+        });
+    })
+</script>

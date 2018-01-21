@@ -163,11 +163,19 @@ class BaseDataModel extends Model
 			return $result;
 	}
 	public function save_trust_msg($arr,$type){
-			$sell_name = $arr['sell_name'];
-			$sell_tel = $arr['sell_tel'];
-			$sell_village = $arr['sell_village'];
-			$sell_addr = $arr['sell_addr'];
-			$sell_price = $arr['sell_price'];
+	    if($type == 0){
+            $sell_name = $arr['sell_name'];
+            $sell_tel = $arr['sell_tel'];
+            $sell_village = $arr['sell_village'];
+            $sell_addr = $arr['sell_addr'];
+            $sell_price = $arr['sell_price'];
+        }else{
+            $sell_name = $arr['rent_name'];
+            $sell_tel = $arr['rent_tel'];
+            $sell_village = $arr['rent_village'];
+            $sell_addr = $arr['rent_addr'];
+            $sell_price = $arr['rent_price'];
+        }
 			$time = date('Y-m-d H:i:s',time());
 			$sub = DB::execute("insert into trusteeship(`name`,`tel`,`village`,`address`,`price`,`trust_type`,`create_time`) values('$sell_name','$sell_tel','$sell_village','$sell_addr','$sell_price',$type,'$time')");
 			return $sub;
