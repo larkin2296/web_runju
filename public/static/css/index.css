@@ -65,7 +65,7 @@ a {
 	width:60%;
 	height:50%;
 }
-.hPhone div {
+.hphone_in {
     width: 45px;
     height: 33px;
     float: left;
@@ -77,11 +77,11 @@ img {
     border: none;
     vertical-align: top;
 }
-.hPhone span{
+.hPhone_sp{
 	font-size: 12px;
     color: #999;
 }
-.hPhone h3{
+.hPhone_h{
 	margin: 0;
     font-size: 20px;
     color: #ff9000;
