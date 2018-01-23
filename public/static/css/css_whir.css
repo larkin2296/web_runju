@@ -334,7 +334,7 @@ margin-bottom: 34px;}
 .hotSelect .pageState span{color: #FF8200;}
 .rent_list{border: 1px solid #E5E5E5;margin-bottom: 30px; background:#fff;}
 .rent_list li{border-top: 1px dashed #E5E5E5;padding: 30px;}
-.rent_list li:first-child{border: none;}
+/*.rent_list li:first-child{border: none;}*/
 .rent_list .left{width: 903px;height: 186px;float: left;}
 .rent_list .left .img{width: 279px;height: 186px;margin-right: 38px;display: block;float: left;}
 .rent_list .left img{width: 279px;height: 186px;}

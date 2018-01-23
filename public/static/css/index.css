@@ -434,3 +434,7 @@ margin-bottom: 34px;}
     background-size: contain;
     cursor: pointer;
 }
+.page{
+    width:100%;
+    height:5em;
+}

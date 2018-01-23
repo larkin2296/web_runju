@@ -22,6 +22,7 @@
           float:left;
           margin-left:10px;
           cursor: pointer;
+          padding:0px;
         }
         .pagination li:hover{
           background-color: orange;
@@ -30,6 +31,17 @@
         .active{
           background-color: orange;
           color:white;
+        }
+        .page li{
+          width:30px;
+          height:30px;
+          text-align: center;
+          line-height:30px;
+          border:1px solid #E8E8E8;
+          float:left;
+          margin-left:10px;
+          cursor: pointer;
+          padding:0px;
         }
       </style>
     </head>
@@ -59,80 +71,36 @@
         
         <ul class="ul">
           <li class="top">区域</li>
-          <li class="list"><a id="quyu0" href="javascript:void(0);" onclick="UrlParams('quyu',0);return false;" class="on">不限</a></li>
-          
-          <li class="list"><a id="quyu20" href="javascript:void(0);" onclick="UrlParams('quyu',20);return false;">徐汇</a></li>
-          
-          <li class="list"><a id="quyu19" href="javascript:void(0);" onclick="UrlParams('quyu',19);return false;">闵行</a></li>
-          
-          <li class="list"><a id="quyu18" href="javascript:void(0);" onclick="UrlParams('quyu',18);return false;">浦东</a></li>
-          
-          <li class="list"><a id="quyu17" href="javascript:void(0);" onclick="UrlParams('quyu',17);return false;">闸北</a></li>
-          
-          <li class="list"><a id="quyu16" href="javascript:void(0);" onclick="UrlParams('quyu',16);return false;">嘉定</a></li>
-          
-          <li class="list"><a id="quyu15" href="javascript:void(0);" onclick="UrlParams('quyu',15);return false;">松江</a></li>
-          
-          <li class="list"><a id="quyu14" href="javascript:void(0);" onclick="UrlParams('quyu',14);return false;">普陀</a></li>
-          
-          <li class="list"><a id="quyu13" href="javascript:void(0);" onclick="UrlParams('quyu',13);return false;">杨浦</a></li>
-          
-          <li class="list"><a id="quyu12" href="javascript:void(0);" onclick="UrlParams('quyu',12);return false;">虹口</a></li>
-          
-          <li class="list"><a id="quyu11" href="javascript:void(0);" onclick="UrlParams('quyu',11);return false;">长宁</a></li>
-          
-          <li class="list"><a id="quyu10" href="javascript:void(0);" onclick="UrlParams('quyu',10);return false;">宝山</a></li>
-          
-          <li class="list"><a id="quyu9" href="javascript:void(0);" onclick="UrlParams('quyu',9);return false;">静安</a></li>
-          
-          <li class="list"><a id="quyu8" href="javascript:void(0);" onclick="UrlParams('quyu',8);return false;">黄浦</a></li>
-          
-          <li class="list"><a id="quyu7" href="javascript:void(0);" onclick="UrlParams('quyu',7);return false;">金山</a></li>
-          
-          <li class="list"><a id="quyu6" href="javascript:void(0);" onclick="UrlParams('quyu',6);return false;">奉贤</a></li>
-          
-          <li class="list"><a id="quyu5" href="javascript:void(0);" onclick="UrlParams('quyu',5);return false;">青浦</a></li>
-          
-          <li class="list"><a id="quyu4" href="javascript:void(0);" onclick="UrlParams('quyu',4);return false;">崇明</a></li>
-          
-          <li class="list"><a id="quyu3" href="javascript:void(0);" onclick="UrlParams('quyu',3);return false;">上海周边</a></li>
+          <li class="list"><a onclick="get_data('district',-1)" class="on">不限</a></li>
+          {foreach name='dis' id='dis'}
+          <li class="list"><a data-*="{$dis.l_id}" data-type="district" onclick="get_data('district',{$dis.l_id})">{$dis.location_name}</a></li>
+          {/foreach}
+
           
         </ul>
 
         <ul class="ul">
           <li class="top">租金</li>
-          <li class="list"><a href="javascript:void(0);" id="zhujin0" onclick="UrlParams('zhujin',0);return false;" class="on">不限</a></li>
+          <li class="list"><a  id="zhujin0" onclick="get_data('price',-1)" class="on">不限</a></li>
+
           
-          <li class="list"><a href="javascript:void(0);" id="zhujin80" onclick="UrlParams('zhujin',80);return false;">3000以上</a></li>
+          <li class="list"><a data-*="2000" data-type="price" onclick="get_data('price',2000)">2000-4000元</a></li>
+
+          <li class="list"><a data-*="4000" data-type="price" onclick="get_data('price',4000)">4000-6000元</a></li>
           
-          <li class="list"><a href="javascript:void(0);" id="zhujin79" onclick="UrlParams('zhujin',79);return false;">2000-3000</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="zhujin42" onclick="UrlParams('zhujin',42);return false;">300-500元</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="zhujin41" onclick="UrlParams('zhujin',41);return false;">500-800元</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="zhujin40" onclick="UrlParams('zhujin',40);return false;">800-1000元</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="zhujin39" onclick="UrlParams('zhujin',39);return false;">1000-2000</a></li>
-          
-          <li class="search"><input id="startZhuJinInput" type="text" onblur="checkZuJinValue(this);return false;"> - <input id="endZhuJinInput" type="text" onblur="checkZuJinValue(this);return false;"> <input type="button" value="确定" style="cursor:pointer;" onclick="UrlParams('userInputZuJin',1);return false;"></li>
+          <li class="list"><a data-*="6000" data-type="price" onclick="get_data('price',6000)">6000-8000元</a></li>
+
+          <li class="list"><a data-*="8000" data-type="price" onclick="get_data('price',8000)">8000元以上</a></li>
+
         </ul>
 
         
         <ul class="ul">
           <li class="top">居室 </li>
-          <li class="list"><a href="javascript:void(0);" id="jushi0" onclick="UrlParams('jushi',0);return false;" class="on">不限</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="jushi47" onclick="UrlParams('jushi',47);return false;">1居</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="jushi46" onclick="UrlParams('jushi',46);return false;">2居</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="jushi45" onclick="UrlParams('jushi',45);return false;">3居</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="jushi44" onclick="UrlParams('jushi',44);return false;">4居</a></li>
-          
-          <li class="list"><a href="javascript:void(0);" id="jushi43" onclick="UrlParams('jushi',43);return false;">4居以上</a></li>
-          
+          <li class="list"><a id="jushi0" onclick="get_data('house_type',-1)" class="on">不限</a></li>
+          {foreach name='h_type' id='htype'}
+          <li class="list"><a data-*="{$htype.t_id}" data-type="house_type" onclick="get_data('house_type',{$htype.t_id})">{$htype.house_type_name}</a></li>
+          {/foreach}
         </ul>   
          
                
@@ -181,11 +149,11 @@
                   {$f_list.furniture_name}{/foreach}</p>
                 <p class="p address">
                 </p><p class="label">
-                    {foreach name='list.key_list' id='k_list'}
-                    <span style="background: rgb(226, 141, 144);">{$k_list}</span>
-                    {/foreach}
-                </p>
-                
+                {foreach name='list.key_list' id='k_list'}
+                <span style="background: rgb(226, 141, 144);">{$k_list}</span>
+                {/foreach}
+              </p>
+
               </div>
             </div>
             <div class="right">
@@ -197,12 +165,15 @@
           {/foreach}
 
 
-                    
-                </ul>
+
+        </ul>
+        <div class="page">
+          {$page}
+        </div>
+
 
                 <div class="clear"></div>
-            </div>
-    {$page}
+      </div>
         </div>
   </div>
 </div><iframe name="266212" height="0" width="0" src="http://360fenxi.mediav.com/mv.html" style="display: none;"></iframe>
@@ -233,3 +204,100 @@
 
 </body>
 </html>
+<script type='text/javascript' src='__static__/js/jquery.min.js'></script>
+<script>
+  $(function(){
+
+  })
+  $('.condition a').click(function(){
+      $(this).parent().parent().find('.on').removeClass('on');
+      $(this).addClass('on');
+
+  })
+  function gotopage(a){
+      $('.page li').css('background-color','white');
+      $('.page li').eq(a-1).css('background-color','orange');
+      var s_data = {};
+      $('.on').each(function(key,value){
+          if(value['dataset']['*'] != undefined){
+              s_data[value['dataset']['type']] = value['dataset']['*'];
+          }
+      })
+      var jsonString = JSON.stringify(s_data);
+      $.ajax({
+          type: "POST",
+          url:"{:url('list_table/get_data')}",
+          data:{'page':a,'s_data':jsonString},// 序列化表单值
+          dataType: "json",
+          success: function(data) {
+              var html = '';
+              $.each(data.data,function(i,v){
+                  html +='<li><div class="left"><a href="__back__/index/house_detail/index/id/'+v.id+'" class="img"><img src="__pic__/uploads/'+v.pic_1+'" alt=""></a><div class="text"><a href="__back__/index/house_detail/index/id/{$list.id}">'+v.title+'</a><p class="p desc">';
+                  $.each(v.furniture_list,function(j,k){
+                      html +=k.furniture_name;
+                  })
+                  html +='</p><p class="p address"></p><p class="label">';
+                  $.each(v.key_list,function(a,b){
+                      html +='<span style="background: rgb(226, 141, 144);">'+b+'</span>';
+                  })
+                  html +='</p></div></div><div class="right"><span>￥'+v.price+' <em>(每月)</em></span><a href="__back__/index/house_detail/index/id/{$list.id}">查看更多</a></div><div class="clear"></div></li>';
+              })
+              $('.rent_list .ul').empty();
+              $('.rent_list .ul').append(html);
+          }
+      });
+  }
+  var page = 1;
+  function get_data(type,data){
+      var s_data = {};
+      $('.on').each(function(key,value){
+          if(value['dataset']['*'] != undefined){
+              s_data[value['dataset']['type']] = value['dataset']['*'];
+          }
+      })
+          s_data[type] = data;
+      var jsonString = JSON.stringify(s_data);
+      $.ajax({
+          type: "POST",
+          url:"{:url('list_table/get_data')}",
+          data:{'page':page,'s_data':jsonString},// 序列化表单值
+          dataType: "json",
+          success: function(data) {
+              var html = '';
+              $.each(data.data,function(i,v){
+                  html +='<li><div class="left"><a href="__back__/index/house_detail/index/id/'+v.id+'" class="img"><img src="__pic__/uploads/'+v.pic_1+'" alt=""></a><div class="text"><a href="__back__/index/house_detail/index/id/{$list.id}">'+v.title+'</a><p class="p desc">';
+                      $.each(v.furniture_list,function(j,k){
+                          html +=k.furniture_name;
+                      })
+                  html +='</p><p class="p address"></p><p class="label">';
+                  $.each(v.key_list,function(a,b){
+                      html +='<span style="background: rgb(226, 141, 144);">'+b+'</span>';
+                  })
+                      html +='</p></div></div><div class="right"><span>￥'+v.price+' <em>(每月)</em></span><a href="__back__/index/house_detail/index/id/{$list.id}">查看更多</a></div><div class="clear"></div></li>';
+              })
+              var htm = '';
+              for(var z=1;z<=data.count;z++){
+                  htm +='<li class="page_li" onclick="gotopage('+z+')">'+z+'</li>';
+              }
+              $('.rent_list ul').empty();
+              $('.page').empty();
+              $('.rent_list .ul').append(html);
+              $('.page').append(htm);
+              $('.page li').eq(0).css('background-color','orange');
+          }
+      });
+  }
+
+//  $(".pagination a").click(function(){
+//      var url = $(this).attr('href');
+//      $.ajax({
+//          'type' : 'get',
+//          'url'  :  url,
+//          'data':{'num':jsonString},
+//          success:function(data){
+//              $('.rent_list').html(data);
+//          }
+//      })
+//      return false;
+//  });
+</script>
