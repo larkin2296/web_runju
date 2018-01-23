@@ -57,15 +57,15 @@
 				  			</li>
 				  			<li>
 				  				<h3 class="h3" style="background:url(../public/static/img/icon06.png) no-repeat left center;"><a href="javascript:void(0);">热点地铁站</a></h3>				  				
-				  				<a href="{:url('list_table/index?a=1')}" class="list">张江高科</a>
-				  				<a href="{:url('list_table/index?a=1')}" class="list">陆家嘴</a>
-				  				<a href="{:url('list_table/index?a=1')}" class="list">世纪大道</a>
+				  				<a href="{:url('list_table/index?a=1&list=张江高科')}" class="list">张江高科</a>
+				  				<a href="{:url('list_table/index?a=1&list=陆家嘴')}" class="list">陆家嘴</a>
+				  				<a href="{:url('list_table/index?a=1&list=世纪大道')}" class="list">世纪大道</a>
 				  			</li>
 				  			<li>
 				  				<h3 class="h3" style="background:url(../public/static/img/icon07.png) no-repeat left center;"><a href="javascript:void(0);">热点工作地</a></h3>				  				
-				  				<a href="{:url('list_table/index?a=1')}" class="list">陆家嘴</a>
-				  				<a href="{:url('list_table/index?a=1')}" class="list">徐家汇</a>
-				  				<a href="{:url('list_table/index?a=1')}" class="list">静安寺</a>
+				  				<a href="{:url('list_table/index?a=1&list=陆家嘴'')}" class="list">陆家嘴</a>
+				  				<a href="{:url('list_table/index?a=1&list=徐家汇'')}" class="list">徐家汇</a>
+				  				<a href="{:url('list_table/index?a=1&list=静安寺'')}" class="list">静安寺</a>
 				  			</li>
 				  			<li>
 				  				<h3 class="h3" style="background:url(../public/static/img/icon08.png) no-repeat left center;"><a href="javascript:void(0);">我们服务</a></h3>			                    
@@ -80,7 +80,6 @@
 			<div id='idxbox2'>
 				<div class="wrap">
 					<h1 class="h1">开心安家</h1>
-					<div class='read_more'>read more...</div>
 					<div class="swiper-container swiper-container-father">
 					<div class="idxList_wrap swiper-wrapper">
 						{foreach name='house' id='house'}
@@ -113,10 +112,10 @@
 					</div>
 				</div>
 			</div>
+			<div class='read_more changzu'>更多房源</div>
 			<div id='duanzu'>
 				<div class='wrap'>
 				<div class='h1'>贴心短租</div>
-					<div class='read_more'>read more...</div>
 					<div class="swiper-container swiper-container-father">
 						<div class="idxList_wrap swiper-wrapper">
 							{foreach name='hou' id='hou'}
@@ -149,7 +148,8 @@
 					</div>
 				</div>
 
-			</div>		
+			</div>
+			<div class='read_more duanzu'>更多房源</div>
 			<div class="idxbox4">
 				<div class="wrap">
 					<h1 class="h1">我们设计</h1>
@@ -413,4 +413,10 @@
 	$('.idxList').click(function(){
 	    location.href='__back__/index/house_detail/index/id/'+$(this).children('.house_id').val();
 	})
+	$('.changzu').click(function(){
+        location.href='{:url("list_table/index?a=1")}';
+	})
+    $('.duanzu').click(function(){
+        location.href='{:url("list_table/index?a=0")}';
+    })
 </script>

@@ -72,11 +72,12 @@ class ListTable extends Controller
 
             $val['key_list'] = $data->get_key_data($val['key_word']);
         }
+
         $arr['data'] = $s_data;
         $s_count =  DB::name('house_rent_data')
             ->where($where)
             ->count();
-        $arr['count'] = ceil($s_count/5);;
+        $arr['count'] = ceil($s_count/5);
         return $arr;
     }
 }

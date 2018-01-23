@@ -244,13 +244,17 @@ img {
 	font-size:20px;
 }
 .read_more{
-	float:right;
-	margin-top:-20px;
-	font-size: 15px;
-	color: black;
-	font-weight: bold;
 	width:150px;
-	letter-spacing:4px;
+    height:50px;
+    border-radius: 20px;
+    background-color: orange;
+    color:white;
+    text-align: center;
+    line-height:50px;
+    font-size: 120%;
+    font-weight: bold;
+    margin:25px auto;
+    cursor: pointer;
 }
 #duanzu{
 	margin-top:30px;
