@@ -207,7 +207,9 @@
 <script type='text/javascript' src='__static__/js/jquery.min.js'></script>
 <script>
   $(function(){
-
+      if('{$tishi}' != ''){
+          alert('{$tishi}');
+      }
   })
   $('.condition a').click(function(){
       $(this).parent().parent().find('.on').removeClass('on');

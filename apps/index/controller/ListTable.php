@@ -9,9 +9,21 @@ use think\Ajaxpage;
 class ListTable extends Controller
 { 
 	public function index($a,$list = ''){
-	    $where = $this->get_where($a);
+        $where = $this->get_where($a);
+	    $data = new BaseDataModel();
+	    if(!empty($id = $data->get_station_name($list))){
+            $where['under_station'] = $id[0];
+        }else if(!empty($id = $data->get_district_name($list))){
+            $where['district'] = $id[0];
+        }
+        if(empty($house = DB::name('house_rent_data')->where($where)->select())){
+            $where = array('rent_type'=>array('=',$a));
+            $this->assign('tishi','找不到结果');
+        }else{
+            $this->assign('tishi','');
+        }
         $res = DB::name('house_rent_data')
-            ->where(array('rent_type'=>array('=',$a)))
+            ->where($where)
             ->paginate(5)
             ->each(function($item,$key){
                 $data = new BaseDataModel;
@@ -20,16 +32,21 @@ class ListTable extends Controller
                 $item['key_list'] = $data->get_key_data($item['key_word']);
                 return $item;
             });
+
+       // echo db('house_rent_data')->getLastSql();
+       // print_r($res);
 	    $dis = DB::name('location_data')
                 ->where(array('parent_id'=>array('=',1),'show_label'=>array('=',1),'location_name'=>array('<>','不限')))
                 ->select();
 	    $house_type = DB::name('house_type_data')
                 ->select();
+
         $page = $res->render();
         $this->assign('page', $page);
+        $this->assign('list',$res);
         $this->assign('dis',$dis);
         $this->assign('h_type',$house_type);
-        $this->assign('list',$res);
+
         $this->assign('type',$a);
         return $this->fetch();		
 	}

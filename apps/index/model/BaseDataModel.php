@@ -254,4 +254,16 @@ class BaseDataModel extends Model
             ->select();
         return $data;
     }
+    public function get_station_name($a){
+        $data = DB::name('underground_data')
+            ->where('underground_name',$a)
+            ->column('u_id');
+        return $data;
+    }
+    public function get_district_name($a){
+        $data = DB::name('location_data')
+            ->where('location_name',$a)
+            ->column('l_id');
+        return $data;
+    }
 }
