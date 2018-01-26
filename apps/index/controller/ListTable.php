@@ -104,13 +104,13 @@ class ListTable extends Controller
     public function get_street(){
 	    $data = new BaseDataModel();
 	    $res = $data->get_street_data($_POST['distr']);
-	    $arr = array_slice($res,0,18);
+	    $arr = array_slice($res,0,17);
 	    return $arr;
     }
     public function get_underground(){
         $data = new BaseDataModel();
         $res = $data->get_station_data($_POST['line']);
-        $arr = array_slice($res,0,18);
+        $arr = array_slice($res,0,17);
         return $arr;
     }
     public function get_search(){
