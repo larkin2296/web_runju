@@ -445,3 +445,27 @@ margin-bottom: 34px;}
 .street,.under{
     display: none;
 }
+.bar6 {background: #F9F0DA;height:48px;width: 372px;}
+.bar6 input {
+    border: 2px solid orange;
+    border-radius: 5px;
+    background: transparent;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 45px;
+}
+.bar6 button {
+    background: orange;
+    border-radius: 5px;
+    top: 0;
+    right: 0;
+    border: none;
+    width: 80px;
+    height: 48px;
+}
+.bar6 button:before {
+    content: "搜索";
+    font-size: 13px;
+    color: #F9F0DA;
+}

@@ -122,17 +122,10 @@
             <div class="BanList">
               <ul class="ul">
                 <li>
-                    <dl>
-                      <dt class="top">热门精选</dt>
-                      <dt class="list list2"><a href="/kxaj/index_13.aspx">综合</a></dt>
-                      <dt class="list list1"><a href="javascript:void(0);" id="renqi" onclick="UrlParams('renqi');return false;" value="1" class="renqiclass" style="background: url(&quot;/cn/images/arrow06.png&quot;) 43px center no-repeat;">人气</a></dt>
-                      <dt class="list list1"><a href="javascript:void(0);" id="jiage" onclick="UrlParams('jiage');return false;" value="1" class="jiageclass" style="background: url(&quot;/cn/images/arrow06.png&quot;) 43px center no-repeat;">价格</a></dt>
-                      <dt class="input">
-                        <input id="startZhuJinInputXia" type="text" onkeydown="entersearch()" onblur="checkZuJinValue(this);return false;">
-                        <input id="endZhuJinInputXia" type="text" onkeydown="entersearch()" onblur="checkZuJinValue(this);return false;">
-                      </dt>
-                      <dt><input type="button" value="搜索" class="SSRMJX" onclick="UrlParams('userInputZuJinXia', 1);"></dt>
-                    </dl>
+                          <div class="search bar6">
+                                  <input type="text" class='search_text' placeholder="请输入您要搜索的内容...">
+                                  <button type="button" class="go_search"></button>
+                          </div>
                 </li>
               </ul>
             </div>
@@ -253,7 +246,7 @@
       $.ajax({
           type: "POST",
           url:"{:url('list_table/get_data')}",
-          data:{'page':a,'s_data':jsonString},// 序列化表单值
+          data:{'page':a,'s_data':jsonString,'type':{$type}},// 序列化表单值
           dataType: "json",
           success: function(data) {
               var html = '';
@@ -286,7 +279,7 @@
       $.ajax({
           type: "POST",
           url:"{:url('list_table/get_data')}",
-          data:{'page':page,'s_data':jsonString},// 序列化表单值
+          data:{'page':page,'s_data':jsonString,'type':{$type}},// 序列化表单值
           dataType: "json",
           success: function(data) {
               var html = '';
@@ -316,7 +309,6 @@
 $('.district .real').click(function(){
         $('.under').hide(300);
         $('.street').show(300);
-        console.log($(this).find('a').data('*'));
     $.ajax({
         type: "POST",
         url:"{:url('list_table/get_street')}",
@@ -335,7 +327,6 @@ $('.district .real').click(function(){
 $('.line .real').click(function(){
         $('.street').hide(300);
         $('.under').show(300);
-    console.log($(this).find('a').data('*'));
     $.ajax({
         type: "POST",
         url:"{:url('list_table/get_underground')}",
@@ -351,4 +342,62 @@ $('.line .real').click(function(){
         }
     });
 })
+  function searchpage(a){
+      $('.page li').css('background-color','white');
+      $('.page li').eq(a-1).css('background-color','orange');
+      $.ajax({
+          type: "POST",
+          url:"{:url('list_table/get_search')}",
+          data:{'page':a,'data':$('.search_text').val(),'type':{$type}},// 序列化表单值
+          dataType: "json",
+          success: function(data) {
+              var html = '';
+              $.each(data.data,function(i,v){
+                  html +='<li><div class="left"><a href="__back__/index/house_detail/index/id/'+v.id+'" class="img"><img src="__pic__/uploads/'+v.pic_1+'" alt=""></a><div class="text"><a href="__back__/index/house_detail/index/id/{$list.id}">'+v.title+'</a><p class="p desc">';
+                  $.each(v.furniture_list,function(j,k){
+                      html +=k.furniture_name;
+                  })
+                  html +='</p><p class="p address"></p><p class="label">';
+                  $.each(v.key_list,function(a,b){
+                      html +='<span style="background: rgb(226, 141, 144);">'+b+'</span>';
+                  })
+                  html +='</p></div></div><div class="right"><span>￥'+v.price+' <em>(每月)</em></span><a href="__back__/index/house_detail/index/id/{$list.id}">查看更多</a></div><div class="clear"></div></li>';
+              })
+              $('.rent_list .ul').empty();
+              $('.rent_list .ul').append(html);
+          }
+      });
+  }
+    $('.go_search').click(function(){
+        $.ajax({
+            type: "POST",
+            url:"{:url('list_table/get_search')}",
+            data:{'data':$('.search_text').val(),'type':{$type},'page':1},// 序列化表单值
+            dataType: "json",
+            success: function(data) {
+                var html = '';
+                $.each(data.data,function(i,v){
+                    html +='<li><div class="left"><a href="__back__/index/house_detail/index/id/'+v.id+'" class="img"><img src="__pic__/uploads/'+v.pic_1+'" alt=""></a><div class="text"><a href="__back__/index/house_detail/index/id/{$list.id}">'+v.title+'</a><p class="p desc">';
+                    $.each(v.furniture_list,function(j,k){
+                        html +=k.furniture_name;
+                    })
+                    html +='</p><p class="p address"></p><p class="label">';
+                    $.each(v.key_list,function(a,b){
+                        html +='<span style="background: rgb(226, 141, 144);">'+b+'</span>';
+                    })
+                    html +='</p></div></div><div class="right"><span>￥'+v.price+' <em>(每月)</em></span><a href="__back__/index/house_detail/index/id/{$list.id}">查看更多</a></div><div class="clear"></div></li>';
+                })
+                var htm = '';
+                for(var z=1;z<=data.count;z++){
+                    htm +='<li class="page_li" onclick="searchpage('+z+')">'+z+'</li>';
+                }
+                $('.rent_list ul').empty();
+                $('.page').empty();
+                $('.rent_list .ul').append(html);
+                $('.page').append(htm);
+                $('.page li').eq(0).css('background-color','orange');
+            }
+
+        });
+    })
 </script>

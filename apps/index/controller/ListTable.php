@@ -81,7 +81,7 @@ class ListTable extends Controller
         $page = $_POST["page"]; //传值页数
         $num = 5;  //每页想要显示的数据条数
         $tiao = ($page-1)*$num;
-        $where = $this->get_where(1,$_POST['s_data']);
+        $where = $this->get_where($_POST['type'],$_POST['s_data']);
         $s_data =  DB::name('house_rent_data')
                  ->where($where)
                  ->limit($tiao,5)
@@ -110,5 +110,35 @@ class ListTable extends Controller
         $data = new BaseDataModel();
         $res = $data->get_station_data($_POST['line']);
         return $res;
+    }
+    public function get_search(){
+        $page = $_POST["page"]; //传值页数
+        $num = 5;  //每页想要显示的数据条数
+        $tiao = ($page-1)*$num;
+        $data = new BaseDataModel();
+        $table = 'house_rent_data';
+        $where = $data->get_house_where($_POST['data'],$_POST['type']);
+        $where['rent_type'] = $_POST['type'];
+        $s_data =  DB::view($table,'*')
+            ->view('location_data',['location_name'],'location_data.l_id=house_rent_data.street')
+            ->where($where)
+            ->limit($tiao,5)
+            ->select();
+//        echo db('house_rent_data')->getLastSql();
+//return;
+        foreach($s_data as &$val){
+            $data = new BaseDataModel;
+            $val['furniture_list'] = $data->get_furniture_name($val['furniture']);
+
+            $val['key_list'] = $data->get_key_data($val['key_word']);
+        }
+
+        $arr['data'] = $s_data;
+        $s_count =  DB::view($table,'*')
+            ->view('location_data',['location_name'],'location_data.l_id=house_rent_data.street')
+            ->where($where)
+            ->count();
+        $arr['count'] = ceil($s_count/5);
+        return $arr;
     }
 }

@@ -321,8 +321,8 @@ margin-bottom: 34px;}
 .hotSelect .BanList li .list2 a{background: #FF8200;color: #fff;}
 .hotSelect .BanList li .list4 a{background: #FFF;color: #333;}
 .hotSelect .BanList li .list4 a:hover{background: #FF8200;color: #fff;}
-.hotSelect .BanList li .input{width: 102px;height: 24px;background: url("../images/input.png") no-repeat;margin: 13px 0 0 20px;}
-.hotSelect .BanList input[type="text"]{width: 34px;height: 24px;padding-left: 13px;float: left\9;vertical-align: middle;line-height: 24px;}
+.hotSelect .BanList li .input{width: 102px;height: 24px;background: url("../img/search.png") no-repeat;margin: 13px 0 0 20px;background-size: contain;}
+/*.hotSelect .BanList input[type="text"]{width: 34px;height: 24px;padding-left: 13px;float: left\9;vertical-align: middle;line-height: 24px;}*/
 .hotSelect .BanList input[type="text"]:first-child{margin-right: 4px;*margin-left: -20px;margin-right: 8px\9;}
 .hotSelect .btn{width: 74px;height: 24px;float: right;margin:13px 20px 0 0;}
 .hotSelect .btn a{width: 24px;height: 24px;display:inline-block;margin-left: 11px;}
