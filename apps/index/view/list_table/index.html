@@ -69,25 +69,25 @@
     <script type="text/javascript"></script>
       <div class="condition">
         <!--//onclick="get_data('district',-1)"-->
-        <ul class="ul district">
+        <ul class="ul district" style="height:auto;min-height:52px;line-height:50px;overflow:hidden;">
           <li class="top">区域</li>
           <li class="buxian list"><a data-type="district"  class="on">不限</a></li>
           {foreach name='dis' id='dis'}
           <li class="list real"><a data-*="{$dis.l_id}" data-type="district" >{$dis.location_name}</a></li>
           {/foreach}
         </ul>
-          <ul class="ul street">
+          <ul class="ul street" style="height:auto;min-height:52px;line-height:50px;overflow:hidden;">
 
           </ul>
 
-          <ul class="ul line">
+          <ul class="ul line" style="height:auto;min-height:52px;line-height:50px;overflow:hidden;">
               <li class="top">地铁</li>
               <li class="buxian list"><a data-type="line" class="on">不限</a></li>
               {foreach name='under' id='tis'}
               <li class="list real"><a data-*="{$tis.u_id}" data-type="line" >{$tis.underground_name}</a></li>
               {/foreach}
           </ul>
-          <ul class="ul under">
+          <ul class="ul under" style="height:auto;min-height:52px;line-height:50px;overflow:hidden;">
 
           </ul>
 

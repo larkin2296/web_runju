@@ -40,7 +40,6 @@ class ListTable extends Controller
                 ->select();
         $under = DB::name('underground_data')
             ->where(array('parent_id'=>array('=',1),'show_label'=>array('=',1),'underground_name'=>array('<>','不限')))
-            ->limit(7)
             ->select();
 	    $house_type = DB::name('house_type_data')
                 ->select();
@@ -104,14 +103,14 @@ class ListTable extends Controller
     public function get_street(){
 	    $data = new BaseDataModel();
 	    $res = $data->get_street_data($_POST['distr']);
-	    $arr = array_slice($res,0,17);
-	    return $arr;
+//	    $arr = array_slice($res,0,17);
+	    return $res;
     }
     public function get_underground(){
         $data = new BaseDataModel();
         $res = $data->get_station_data($_POST['line']);
-        $arr = array_slice($res,0,17);
-        return $arr;
+//        $arr = array_slice($res,0,17);
+        return $res;
     }
     public function get_search(){
         $page = $_POST["page"]; //传值页数
