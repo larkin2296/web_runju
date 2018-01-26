@@ -244,13 +244,13 @@ class BaseDataModel extends Model
     }
     public function get_station_data($a){
         $data = DB::name('underground_data')
-            ->where(array('parent_id'=>$a,'show_label'=>1))
+            ->where(array('parent_id'=>$a,'show_label'=>1,'underground_name'=>array('<>','不限')))
             ->select();
         return $data;
     }
     public function get_street_data($a){
         $data = DB::name('location_data')
-            ->where(array('parent_id'=>$a,'show_label'=>1))
+            ->where(array('parent_id'=>$a,'show_label'=>1,'location_name'=>array('<>','不限')))
             ->select();
         return $data;
     }
