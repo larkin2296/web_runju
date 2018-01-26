@@ -68,18 +68,30 @@
       </div>
     <script type="text/javascript"></script>
       <div class="condition">
-        
-        <ul class="ul">
+        <!--//onclick="get_data('district',-1)"-->
+        <ul class="ul district">
           <li class="top">区域</li>
-          <li class="list"><a onclick="get_data('district',-1)" class="on">不限</a></li>
+          <li class="buxian list"><a data-type="district"  class="on">不限</a></li>
           {foreach name='dis' id='dis'}
-          <li class="list"><a data-*="{$dis.l_id}" data-type="district" onclick="get_data('district',{$dis.l_id})">{$dis.location_name}</a></li>
+          <li class="list real"><a data-*="{$dis.l_id}" data-type="district" >{$dis.location_name}</a></li>
           {/foreach}
-
-          
         </ul>
+          <ul class="ul street">
 
-        <ul class="ul">
+          </ul>
+
+          <ul class="ul line">
+              <li class="top">地铁</li>
+              <li class="buxian list"><a data-type="line" class="on">不限</a></li>
+              {foreach name='under' id='tis'}
+              <li class="list real"><a data-*="{$tis.u_id}" data-type="line" >{$tis.underground_name}</a></li>
+              {/foreach}
+          </ul>
+          <ul class="ul under">
+
+          </ul>
+
+        <ul class="ul zujin">
           <li class="top">租金</li>
           <li class="list"><a  id="zhujin0" onclick="get_data('price',-1)" class="on">不限</a></li>
 
@@ -95,7 +107,7 @@
         </ul>
 
         
-        <ul class="ul">
+        <ul class="ul jushi">
           <li class="top">居室 </li>
           <li class="list"><a id="jushi0" onclick="get_data('house_type',-1)" class="on">不限</a></li>
           {foreach name='h_type' id='htype'}
@@ -211,10 +223,22 @@
           alert('{$tishi}');
       }
   })
-  $('.condition a').click(function(){
+  $('.condition ul').not('.district,.line').find('a').click(function(){
       $(this).parent().parent().find('.on').removeClass('on');
       $(this).addClass('on');
 
+  })
+  //$("body").delegate(".class","click",function(){});
+  $('.under,.street').on('click','a',function(){
+      $(this).parent().parent().find('.on').removeClass('on');
+      $(this).parent().parent().prev().find('.on').removeClass('on');
+      $(this).addClass('on');
+  })
+  $('.buxian').click(function(){
+      $(this).parent().next().find('.on').removeClass('on');
+      $(this).parent().next().hide(500);
+      $(this).find('a').addClass('on');
+      get_data($(this).find('a').data('type'),-1);
   })
   function gotopage(a){
       $('.page li').css('background-color','white');
@@ -289,17 +313,42 @@
           }
       });
   }
-
-//  $(".pagination a").click(function(){
-//      var url = $(this).attr('href');
-//      $.ajax({
-//          'type' : 'get',
-//          'url'  :  url,
-//          'data':{'num':jsonString},
-//          success:function(data){
-//              $('.rent_list').html(data);
-//          }
-//      })
-//      return false;
-//  });
+$('.district .real').click(function(){
+        $('.under').hide(300);
+        $('.street').show(300);
+        console.log($(this).find('a').data('*'));
+    $.ajax({
+        type: "POST",
+        url:"{:url('list_table/get_street')}",
+        data:{'distr':$(this).find('a').data('*')},// 序列化表单值
+        dataType: "json",
+        success: function(data) {
+            var html = '';
+            $.each(data,function(i,v){
+                html += ' <li class="list real"><a data-*="'+v.l_id+'" data-type="street" onclick="get_data(\'street\','+v.l_id+')">'+v.location_name+'</a></li>';
+            })
+            $('.street').empty();
+            $('.street').append(html);
+        }
+    });
+})
+$('.line .real').click(function(){
+        $('.street').hide(300);
+        $('.under').show(300);
+    console.log($(this).find('a').data('*'));
+    $.ajax({
+        type: "POST",
+        url:"{:url('list_table/get_underground')}",
+        data:{'line':$(this).find('a').data('*')},// 序列化表单值
+        dataType: "json",
+        success: function(data) {
+            var html = '';
+            $.each(data,function(i,v){
+                html += ' <li class="list real"><a data-*="'+v.u_id+'" data-type="under_station" onclick="get_data(\'under_station\','+v.u_id+')">'+v.underground_name+'</a></li>';
+            })
+            $('.under').empty();
+            $('.under').append(html);
+        }
+    });
+})
 </script>

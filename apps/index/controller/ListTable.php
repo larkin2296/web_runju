@@ -38,6 +38,10 @@ class ListTable extends Controller
 	    $dis = DB::name('location_data')
                 ->where(array('parent_id'=>array('=',1),'show_label'=>array('=',1),'location_name'=>array('<>','不限')))
                 ->select();
+        $under = DB::name('underground_data')
+            ->where(array('parent_id'=>array('=',1),'show_label'=>array('=',1),'underground_name'=>array('<>','不限')))
+            ->limit(7)
+            ->select();
 	    $house_type = DB::name('house_type_data')
                 ->select();
 
@@ -46,7 +50,7 @@ class ListTable extends Controller
         $this->assign('list',$res);
         $this->assign('dis',$dis);
         $this->assign('h_type',$house_type);
-
+        $this->assign('under',$under);
         $this->assign('type',$a);
         return $this->fetch();		
 	}
@@ -96,5 +100,15 @@ class ListTable extends Controller
             ->count();
         $arr['count'] = ceil($s_count/5);
         return $arr;
+    }
+    public function get_street(){
+	    $data = new BaseDataModel();
+	    $res = $data->get_street_data($_POST['distr']);
+	    return $res;
+    }
+    public function get_underground(){
+        $data = new BaseDataModel();
+        $res = $data->get_station_data($_POST['line']);
+        return $res;
     }
 }
