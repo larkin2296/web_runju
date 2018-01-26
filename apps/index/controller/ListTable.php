@@ -104,12 +104,14 @@ class ListTable extends Controller
     public function get_street(){
 	    $data = new BaseDataModel();
 	    $res = $data->get_street_data($_POST['distr']);
-	    return $res;
+	    $arr = array_slice($res,0,18);
+	    return $arr;
     }
     public function get_underground(){
         $data = new BaseDataModel();
         $res = $data->get_station_data($_POST['line']);
-        return $res;
+        $arr = array_slice($res,0,18);
+        return $arr;
     }
     public function get_search(){
         $page = $_POST["page"]; //传值页数
